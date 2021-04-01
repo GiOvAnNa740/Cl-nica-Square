@@ -1,8 +1,9 @@
 export class Usuario {
     nome!: string;
-    senha!: string;
+    dtNasc!: string;
+    fone!: string;
     email!: string;
-    telefone!: string;
+    senha!: string;
     cpf!: string;
-    dtnascimento!: string;
+    sexo!: string;
 }

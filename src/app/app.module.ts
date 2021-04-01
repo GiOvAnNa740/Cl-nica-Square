@@ -7,6 +7,8 @@ import { MenuCliComponent } from './menu-cli/menu-cli.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { SignComponent } from './sign/sign.component';
+import { SobreComponent } from './sobre/sobre.component';
+import { AgendarComponent } from './agendar/agendar.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { SignComponent } from './sign/sign.component';
     MenuCliComponent,
     HomeComponent,
     MenuComponent,
-    SignComponent
+    SignComponent,
+    SobreComponent,
+    AgendarComponent
   ],
   imports: [
     BrowserModule,
