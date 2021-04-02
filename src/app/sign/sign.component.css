@@ -1,5 +1,22 @@
-form{
-    margin-top: 60px;
-    margin-left: 80px;
-    margin-right: 80px;
+form {
+  margin-top: 60px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+h5 {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+hr.dashed {
+  border-top: 3px dotted rgb(31, 31, 31);
+}
+
+label {
+    font-size: 14px;
+}
+
+div .form-check {
+    margin-left: 5px;
 }

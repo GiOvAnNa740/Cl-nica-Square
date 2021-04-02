@@ -1,7 +1,10 @@
 .navbar{
-    background-color: #fff;
+    background-color: rgb(226, 248, 253);
 }
 
+div .search{
+    width: 100px;
+}
 
 li span {
     position: relative;
