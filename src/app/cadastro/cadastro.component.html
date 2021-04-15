@@ -57,6 +57,35 @@
         />
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEspec">Especialidade</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputEspec"
+          placeholder="Informe apenas uma especialidade"
+        />
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputCRM">CRM/UF</label>
+        <input
+          type="number"
+          class="form-control"
+          id="inputCRM"
+          placeholder="000000/XX"
+        />
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputFoto">(Faça o upload de uma foto do seu CRM)</label>
+        <input
+          type="file"
+          accept="image/*"
+          class="form-control"
+          id="inputFoto"
+        />
+      </div>
+    </div>
     <div class="form-group">
       <label for="inputSenha">Senha</label>
       <input
@@ -71,9 +100,15 @@
       <input
         type="password"
         class="form-control"
-        id="inputSenha"
+        id="inputSenha2"
         placeholder=""
       />
+    </div>
+    <div class="form-group">
+      <label for="inputFoto"
+        >Selecione uma foto (será visível no seu perfil)</label
+      >
+      <input type="file" accept="image/*" class="form-control" id="inputFoto" />
     </div>
   </div>
   <div class="endereco">
@@ -159,5 +194,38 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-info">Finalizar cadastro</button>
+  <button type="submit" class="btn btn-info" value="enviar">
+    Finalizar cadastro
+  </button>
 </form>
+<!--
+<script type="text/javascript">
+  $("#inputCEP").focusout(function () {
+    //Início do Comando AJAX
+    $.ajax({
+      //O campo URL diz o caminho de onde virá os dados
+      //É importante concatenar o valor digitado no CEP
+      url: "https://viacep.com.br/ws/" + $(this).val() + "/json/unicode/",
+      //Aqui você deve preencher o tipo de dados que será lido,
+      //no caso, estamos lendo JSON.
+      dataType: "json",
+      //SUCESS é referente a função que será executada caso
+      //ele consiga ler a fonte de dados com sucesso.
+      //O parâmetro dentro da função se refere ao nome da variável
+      //que você vai dar para ler esse objeto.
+      success: function (resposta) {
+        //Agora basta definir os valores que você deseja preencher
+        //automaticamente nos campos acima.
+        $("#inputEndereco").val(resposta.inputEndereco);
+        $("#inputComplemento").val(resposta.inputComplemento);
+        $("#inputBairro").val(resposta.inputBairro);
+        $("#inputCidade").val(resposta.inputCidade);
+        $("#inputEstado").val(resposta.inputEstado);
+        //Vamos incluir para que o Número seja focado automaticamente
+        //melhorando a experiência do usuário
+        //$("#numero").focus();
+      },
+    });
+  });
+</script>
+-->
