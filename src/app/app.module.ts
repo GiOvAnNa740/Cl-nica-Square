@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 //FullCalendar
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
@@ -15,6 +17,8 @@ import { SignComponent } from './sign/sign.component';
 import { SobreComponent } from './sobre/sobre.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { AgendaComponent } from './agenda/agenda.component';
+import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
+import { UsuarioService } from './usuarios/usuario.service';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -31,14 +35,17 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SignComponent,
     SobreComponent,
     CadastroComponent,
-    AgendaComponent
+    AgendaComponent,
+    UsuarioInserirComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FullCalendarModule // register FullCalendar with you app
+    FullCalendarModule, // register FullCalendar with you app
+    HttpClientModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

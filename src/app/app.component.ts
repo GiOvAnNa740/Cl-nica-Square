@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { Usuario } from './usuarios/usuario.model';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,14 @@ import { CalendarOptions } from '@fullcalendar/angular'; // useful for typecheck
 })
 export class AppComponent {
   title = 'novo-projeto';
+  usuarios: Usuario[] = [];
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth'
   };
+
+  onUsuarioAdicionado(usuario: Usuario) {
+    this.usuarios = [...this.usuarios, usuario];
+    console.log(this.usuarios);
+  }
 }
