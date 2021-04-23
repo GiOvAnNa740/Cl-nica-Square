@@ -2,14 +2,13 @@
   type="text/javascript"
   src="https://code.jquery.com/jquery-3.2.1.min.js"
 ></script>
-<form (submit)="onAdicionarUsuario(usuarioForm)" #usuarioForm="ngForm">
+<form (submit)="onAdicionarMedico(medicoForm)" #medicoForm="ngForm">
   <div class="dados-pessoais">
     <h5>Dados pessoais</h5>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputNome">Nome</label>
         <input
-          required
           type="text"
           class="form-control"
           id="inputNome"
@@ -84,6 +83,41 @@
         />
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEspec">Especialidade</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputEspec"
+          placeholder="Informe apenas uma especialidade"
+          name="espec"
+          ngModel
+          #espec="ngModel"
+        />
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputCRM">CRM/UF</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCRM"
+          placeholder="000000/XX"
+          name="crm"
+          ngModel
+          #crm="ngModel"
+        />
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputFoto">(Faça o upload de uma foto do seu CRM)</label>
+        <input
+          type="file"
+          accept="image/*"
+          class="form-control"
+          id="inputFoto"
+        />
+      </div>
+    </div>
     <div class="form-group">
       <label for="inputSenha">Senha</label>
       <input
@@ -101,12 +135,18 @@
       <input
         type="password"
         class="form-control"
-        id="inputSenha"
+        id="inputSenha2"
         placeholder=""
         name="senhaconf"
         ngModel
         #senhaconf="ngModel"
       />
+    </div>
+    <div class="form-group">
+      <label for="inputFoto"
+        >Selecione uma foto (será visível no seu perfil)</label
+      >
+      <input type="file" accept="image/*" class="form-control" id="inputFoto" />
     </div>
   </div>
   <div class="endereco">
@@ -192,5 +232,7 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-info">Finalizar cadastro</button>
+  <button type="submit" class="btn btn-info" value="enviar">
+    Finalizar cadastro
+  </button>
 </form>

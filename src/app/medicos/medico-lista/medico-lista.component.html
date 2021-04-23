@@ -1,0 +1,12 @@
+<div>
+  <h5>Conheça nossos médicos</h5>
+  <mat-accordion *ngIf="medicos.length > 0">
+    <mat-expansion-panel *ngFor="let medico of medicos">
+      <mat-expansion-panel-header
+        >{{ medico.nome }} - {{ medico.espec }}</mat-expansion-panel-header
+      >
+      <p>Fone: {{ medico.fone }}</p>
+      <p>Email: {{ medico.email }}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -8,6 +8,13 @@ import { FullCalendarModule } from '@fullcalendar/angular'; // the main connecto
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 
+//mat
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuCliComponent } from './menu-cli/menu-cli.component';
@@ -19,6 +26,9 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
 import { UsuarioService } from './usuarios/usuario.service';
+import { MedicoInserirComponent } from './medicos/medico-inserir/medico-inserir.component';
+import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -36,7 +46,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SobreComponent,
     CadastroComponent,
     AgendaComponent,
-    UsuarioInserirComponent
+    UsuarioInserirComponent,
+    MedicoInserirComponent,
+    MedicoListaComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +56,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullCalendarModule, // register FullCalendar with you app
     HttpClientModule,
     FormsModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    BrowserAnimationsModule
   ],
   providers: [UsuarioService],
   bootstrap: [AppComponent]
