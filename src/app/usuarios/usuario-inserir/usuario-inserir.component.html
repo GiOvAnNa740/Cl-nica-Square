@@ -22,6 +22,7 @@
       <div class="form-group col-md-3">
         <label for="inputSexo">Sexo</label>
         <select
+          required
           id="inputSexo"
           class="form-control"
           name="sexo"
@@ -36,6 +37,7 @@
       <div class="form-group col-md-3">
         <label for="inputData">Data de nascimento</label>
         <input
+          required
           type="date"
           class="form-control"
           id="inputData"
@@ -50,6 +52,7 @@
       <div class="form-group col-md-6">
         <label for="inputEmail">Email</label>
         <input
+          required
           type="email"
           class="form-control"
           id="inputEmail"
@@ -62,6 +65,7 @@
       <div class="form-group col-md-3">
         <label for="inputTelefone">Telefone</label>
         <input
+          required
           type="number"
           class="form-control"
           id="inputTelefone"
@@ -74,6 +78,7 @@
       <div class="form-group col-md-3">
         <label for="inputCpf">CPF</label>
         <input
+          required
           type="number"
           class="form-control"
           id="inputCpf"
@@ -87,6 +92,7 @@
     <div class="form-group">
       <label for="inputSenha">Senha</label>
       <input
+        required
         type="password"
         class="form-control"
         id="inputSenha"
@@ -99,6 +105,7 @@
     <div class="form-group">
       <label for="inputSenha">Confirmar senha</label>
       <input
+        required
         type="password"
         class="form-control"
         id="inputSenha"
@@ -192,5 +199,12 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-info">Finalizar cadastro</button>
+  <script language="javascript" type="text/javascript">
+    function newPopup() {
+      varWindow = window.open("popup.html", "popup");
+    }
+  </script>
+  <button type="submit" class="btn btn-info" href="javascript:newPopup()">
+    Finalizar cadastro
+  </button>
 </form>

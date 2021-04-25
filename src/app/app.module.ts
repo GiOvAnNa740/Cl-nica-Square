@@ -48,7 +48,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AgendaComponent,
     UsuarioInserirComponent,
     MedicoInserirComponent,
-    MedicoListaComponent
+    MedicoListaComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +64,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BrowserAnimationsModule
   ],
   providers: [UsuarioService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
