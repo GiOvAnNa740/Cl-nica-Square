@@ -12,8 +12,11 @@ export class AppComponent {
   usuarios: Usuario[] = [];
 
   calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth'
+    initialView: 'dayGridMonth',
+    locale: 'pt-br'
   };
+
+
 
   onUsuarioAdicionado(usuario: Usuario) {
     this.usuarios = [...this.usuarios, usuario];

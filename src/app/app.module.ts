@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //FullCalendar
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+
+//callendar
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 //mat
 import { MatInputModule } from '@angular/material/input';
@@ -28,12 +33,11 @@ import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inse
 import { UsuarioService } from './usuarios/usuario.service';
 import { MedicoInserirComponent } from './medicos/medico-inserir/medico-inserir.component';
 import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
   dayGridPlugin,
-  interactionPlugin
+  interactionPlugin,
 ]);
 
 @NgModule({
@@ -61,9 +65,13 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [UsuarioService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

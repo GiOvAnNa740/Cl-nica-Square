@@ -15,7 +15,10 @@ export class AgendaComponent implements OnInit {
 
 
   calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth'
+    initialView: 'dayGridMonth',
+    locale: 'pt-br'
   };
+
+
 
 }

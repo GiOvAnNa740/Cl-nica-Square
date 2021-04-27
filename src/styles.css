@@ -1,7 +1,16 @@
-body{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
