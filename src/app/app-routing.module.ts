@@ -7,7 +7,8 @@ import { SobreComponent } from './sobre/sobre.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
 import { MedicoInserirComponent } from './medicos/medico-inserir/medico-inserir.component';
-import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component'
+import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component';
+import { AgendaMedicoComponent } from './agenda/agenda-medico/agenda-medico.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'cadastro', component:CadastroComponent},
   {path: 'usuario', component:UsuarioInserirComponent},
   {path: 'medicos', component:MedicoInserirComponent},
-  {path: 'medicoLista', component:MedicoListaComponent}
+  {path: 'medicoLista', component:MedicoListaComponent},
+  {path: 'agendaMedico', component:AgendaMedicoComponent}
 ];
 
 @NgModule({

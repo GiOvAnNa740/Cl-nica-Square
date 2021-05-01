@@ -16,7 +16,13 @@ export class AgendaComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    locale: 'pt-br'
+    locale: 'pt-br',
+    dayMaxEvents: true, // allow "more" link when too many events
+    events: [
+      { title: 'Nutrição - Bianca', date: '2021-04-06'},
+      { title: 'Psiquiatria - Marcio', date: '2021-04-09'},
+      { title: 'Retorno - Bianca', date: '2021-04-23'},
+    ]
   };
 
 

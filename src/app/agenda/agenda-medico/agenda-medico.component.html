@@ -7,20 +7,20 @@
     <div class="form-group col-md-6">
       <label for="inputEspecialidade">Especialidade</label>
       <select id="inputEspecialidade" class="form-control">
-        <option selected>Escolha a especialidade desejada</option>
         <option value="Nutrição">Nutrição</option>
         <option value="Psicologia">Psicologia</option>
         <option value="Psiquiatria">Psiquiatria</option>
       </select>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputMedico">Medico</label>
+      <label for="inputMedico">Paciente</label>
       <select id="inputMedico" class="form-control">
-        <option selected>Selecione o médico de preferência</option>
-        <option value="NA">Não tenho preferência</option>
-        <option value="Bianca">Bianca</option>
-        <option value="Marcio">Marcio</option>
-        <option value="Renato">Renato</option>
+        <option selected>Selecione o paciente para filtrar</option>
+        <option value="Todos">Todos</option>
+        <option value="1">paciente</option>
+        <option value="2">paciente</option>
+        <option value="3">paciente</option>
+        <option value="4">paciente</option>
       </select>
     </div>
   </div>
@@ -31,7 +31,7 @@
         type="date"
         class="form-control"
         id="inputData"
-        placeholder="Selecione uma data disponível"
+        placeholder="Selecione uma data"
       />
     </div>
     <div class="form-group col-md-6">
@@ -40,13 +40,16 @@
         type="time"
         class="form-control"
         id="inputHora"
-        placeholder="Selecione um horário disponível"
+        placeholder="Selecione um horário"
       />
     </div>
   </div>
   <div class="form-row">
     <button type="submit" class="btn btn-info" value="enviar">
       Agendar
+    </button>
+    <button type="submit" class="btn btn-outline-primary" id="btn2" value="enviar">
+      Consultar
     </button>
   </div>
 

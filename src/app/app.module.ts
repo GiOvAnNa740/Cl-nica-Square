@@ -33,6 +33,8 @@ import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inse
 import { UsuarioService } from './usuarios/usuario.service';
 import { MedicoInserirComponent } from './medicos/medico-inserir/medico-inserir.component';
 import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component';
+import { AgendaMedicoComponent } from './agenda/agenda-medico/agenda-medico.component';
+import { FooterComponent } from './footer/footer.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -53,6 +55,8 @@ FullCalendarModule.registerPlugins([
     UsuarioInserirComponent,
     MedicoInserirComponent,
     MedicoListaComponent,
+    AgendaMedicoComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
