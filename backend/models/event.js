@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const agendaSchema = mongoose.Schema({
+const eventSchema = mongoose.Schema({
   title: { type: String, required: true },
   date: { type: String, required: true },
   hora: { type: String, required: true },
@@ -9,6 +9,5 @@ const agendaSchema = mongoose.Schema({
   espec: { type: String, required: true },
 });
 
-module.exports = mongoose.model("Agenda", agendaSchema);
+module.exports = mongoose.model("Event", eventSchema);
 
-export default agenda;

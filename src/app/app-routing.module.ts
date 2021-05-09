@@ -9,6 +9,7 @@ import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inse
 import { MedicoInserirComponent } from './medicos/medico-inserir/medico-inserir.component';
 import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component';
 import { AgendaMedicoComponent } from './agenda/agenda-medico/agenda-medico.component';
+import { AgendaInserirComponent } from './agenda/agenda-inserir/agenda-inserir.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'usuario', component:UsuarioInserirComponent},
   {path: 'medicos', component:MedicoInserirComponent},
   {path: 'medicoLista', component:MedicoListaComponent},
-  {path: 'agendaMedico', component:AgendaMedicoComponent}
+  {path: 'agendaMedico', component:AgendaMedicoComponent},
+  {path: 'agendaInserir', component:AgendaInserirComponent},
 ];
 
 @NgModule({

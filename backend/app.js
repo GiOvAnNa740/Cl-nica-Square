@@ -104,4 +104,41 @@ app.use("/api/medicos", (req, res, next) => {
   });
 });
 
+//agenda
+
+app.post("/api/agendas", (req, res, next) => {
+  const agenda = new Agenda({
+    title: req.body.title,
+    date: req.body.date,
+    hora: req.body.hora,
+    medico: req.body.medico,
+    paciente: req.body.paciente,
+    espec: req.body.espec,
+  });
+  agenda.save();
+  console.log(agenda);
+  res.status(201).json({ mensagem: "Consulta inserida" });
+});
+
+app.get("/api/agendas", (req, res, next) => {
+  Agenda.find().then((documents) => {
+    res.status(200).json({
+      mensagem: "Tudo OK",
+      agendas: documents,
+    });
+  });
+});
+
+app.delete("/api/agendas/:id", (req, res, next) => {
+  console.log(req.params);
+  res.status(200).end();
+});
+
+app.use("/api/agendas", (req, res, next) => {
+  res.status(200).json({
+    mensagem: "Tudo OK",
+    agendas: agendas,
+  });
+});
+
 module.exports = app;

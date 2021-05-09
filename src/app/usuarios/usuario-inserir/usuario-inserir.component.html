@@ -19,7 +19,7 @@
           #nome="ngModel"
         />
       </div>
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-1">
         <label for="inputSexo">Sexo</label>
         <select
           required
@@ -34,7 +34,7 @@
           <option value="Masculino">Masculino</option>
         </select>
       </div>
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-2">
         <label for="inputData">Data de nascimento</label>
         <input
           required
@@ -45,6 +45,15 @@
           name="dtnasc"
           ngModel
           #dtNasc="ngModel"
+        />
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputFoto">(Faça o upload de uma foto sua)</label>
+        <input
+          type="file"
+          accept="image/*"
+          class="form-control"
+          id="inputFoto"
         />
       </div>
     </div>

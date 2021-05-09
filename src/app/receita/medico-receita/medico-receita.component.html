@@ -1,0 +1,58 @@
+<script
+  type="text/javascript"
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+></script>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputPaciente">Paciente</label>
+      <select
+        id="inputPaciente"
+        class="form-control"
+        name="paciente"
+        ngModel
+        #paciente="ngModel"
+      >
+        <option selected>Selecione o paciente para filtrar</option>
+        <option value="Todos">Todos</option>
+        <option value="1">paciente</option>
+        <option value="2">paciente</option>
+        <option value="3">paciente</option>
+        <option value="4">paciente</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputTipo">O</label>
+      <select
+        id="inputTipo"
+        class="form-control"
+        name="tipo"
+        ngModel
+        #tipo="ngModel"
+      >
+        <option selected>Selecione o que gostaria de adicionar</option>
+        <option value="Medicação">Medicação</option>
+        <option value="Exame">Exame</option>
+        <option value="Recomendação">Recomendação</option>
+        <option value="Outro">Outro</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputTexto">Data </label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputTexto"
+        placeholder="Digite o que gostaria de adicionar à ficha do paciente"
+        name="texto"
+        ngModel
+        #texto="ngModel"
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <button type="submit" class="btn btn-info" value="enviar">Inserir</button>
+  </div>
+</form>

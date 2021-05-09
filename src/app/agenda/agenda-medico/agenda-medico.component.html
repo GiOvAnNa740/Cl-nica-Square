@@ -1,57 +1,12 @@
-<script
-  type="text/javascript"
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-></script>
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEspecialidade">Especialidade</label>
-      <select id="inputEspecialidade" class="form-control">
-        <option value="Nutrição">Nutrição</option>
-        <option value="Psicologia">Psicologia</option>
-        <option value="Psiquiatria">Psiquiatria</option>
-      </select>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputMedico">Paciente</label>
-      <select id="inputMedico" class="form-control">
-        <option selected>Selecione o paciente para filtrar</option>
-        <option value="Todos">Todos</option>
-        <option value="1">paciente</option>
-        <option value="2">paciente</option>
-        <option value="3">paciente</option>
-        <option value="4">paciente</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputData">Data </label>
-      <input
-        type="date"
-        class="form-control"
-        id="inputData"
-        placeholder="Selecione uma data"
-      />
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputHora">Horário</label>
-      <input
-        type="time"
-        class="form-control"
-        id="inputHora"
-        placeholder="Selecione um horário"
-      />
-    </div>
-  </div>
-  <div class="form-row">
-    <button type="submit" class="btn btn-info" value="enviar">
-      Agendar
-    </button>
-    <button type="submit" class="btn btn-outline-primary" id="btn2" value="enviar">
-      Consultar
-    </button>
-  </div>
-
-  <full-calendar [options]="calendarOptions"></full-calendar>
-</form>
+<div>
+  <h5>Suas consultas agendadas</h5>
+  <mat-accordion *ngIf="agendas.length > 0">
+    <mat-expansion-panel *ngFor="let agenda of agendas">
+      <mat-expansion-panel-header
+        >{{ agenda.paciente }} - {{ agenda.espec }}</mat-expansion-panel-header
+      >
+      <p>Data: {{ agenda.date }}</p>
+      <p>Hora: {{ agenda.hora }}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -35,6 +35,8 @@ import { MedicoInserirComponent } from './medicos/medico-inserir/medico-inserir.
 import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component';
 import { AgendaMedicoComponent } from './agenda/agenda-medico/agenda-medico.component';
 import { FooterComponent } from './footer/footer.component';
+import { AgendaInserirComponent } from './agenda/agenda-inserir/agenda-inserir.component';
+import { MedicoReceitaComponent } from './receita/medico-receita/medico-receita.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -57,6 +59,8 @@ FullCalendarModule.registerPlugins([
     MedicoListaComponent,
     AgendaMedicoComponent,
     FooterComponent,
+    AgendaInserirComponent,
+    MedicoReceitaComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 export interface Agenda{
   id: string;
-  titulo: string;
-  data: string;
+  title: string;
+  date: string;
   hora: string,
   medico: string,
   paciente: string,

@@ -1,36 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { AgendaService } from '../agenda.service';
+import { Agenda } from '../agenda.model';
+
 
 @Component({
   selector: 'app-agenda-medico',
   templateUrl: './agenda-medico.component.html',
-  styleUrls: ['./agenda-medico.component.css']
+  styleUrls: ['./agenda-medico.component.css'],
 })
-export class AgendaMedicoComponent implements OnInit {
+export class AgendaMedicoComponent implements OnInit, OnDestroy  {
 
 
-  constructor() { }
+  agendas:Agenda[] = [];
+  
+  private agendasSubscription!: Subscription;
 
-  ngOnInit(): void {
+
+  constructor(public agendaService: AgendaService) {}
+
+  ngOnDestroy(): void {
+    this.agendasSubscription.unsubscribe();
   }
 
-
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    locale: 'pt-br',
-    dayMaxEvents: true, // allow "more" link when too many events
-    events: [
-      { title: 'Giovanna - 13:00', date: '2021-05-06'},
-      { title: 'Bianca - 12:00', date: '2021-05-10'},
-      { title: 'Gabriel - 9:00', date: '2021-04-30'},
-      { title: 'Maria - 8:00', date: '2021-05-19'},
-      { title: 'José - 9:00', date: '2021-05-19'},
-      { title: 'Pedro - 12:00', date: '2021-05-19'},
-      { title: 'Julia - 10:00', date: '2021-05-17'},
-      { title: 'Marco - 9:00', date: '2021-05-27'},
-
-    ]
-  };
-
-
+  ngOnInit(): void {
+    this.agendaService.getAgendas();
+    this.agendasSubscription = this.agendaService
+      .getListaDeAgendasAtualizadaObservable()
+      .subscribe((agendas: Agenda[]) => {
+        this.agendas = agendas;
+      });
+  }
 }

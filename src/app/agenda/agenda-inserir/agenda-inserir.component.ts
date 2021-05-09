@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AgendaService } from './agenda.service';
+import { AgendaService } from '../agenda.service';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 
 @Component({
-  selector: 'app-agenda',
-  templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.css'],
+  selector: 'app-agenda-inserir',
+  templateUrl: './agenda-inserir.component.html',
+  styleUrls: ['./agenda-inserir.component.css']
 })
-export class AgendaComponent {
+export class AgendaInserirComponent {
   constructor(public agendaService: AgendaService) {}
 
   onAdicionarAgenda(form: NgForm) {
@@ -23,7 +23,7 @@ export class AgendaComponent {
       form.value.medico,
       form.value.paciente,
       form.value.espec
-    );
+    )
 
     form.resetForm();
   }
@@ -33,9 +33,15 @@ export class AgendaComponent {
     locale: 'pt-br',
     dayMaxEvents: true, // allow "more" link when too many events
     events: [
-      { title: 'Nutrição - Bianca', date: '2021-05-06' },
-      { title: 'Psiquiatria - Marcio', date: '2021-05-09' },
-      { title: 'Retorno - Bianca', date: '2021-05-23' },
+      { title: 'Giovanna - 13:00', date: '2021-05-06' },
+      { title: 'Bianca - 12:00', date: '2021-05-10' },
+      { title: 'Gabriel - 9:00', date: '2021-04-30' },
+      { title: 'Maria - 8:00', date: '2021-05-19' },
+      { title: 'José - 9:00', date: '2021-05-19' },
+      { title: 'Pedro - 12:00', date: '2021-05-19' },
+      { title: 'Julia - 10:00', date: '2021-05-17' },
+      { title: 'Marco - 9:00', date: '2021-05-27' },
     ],
   };
+
 }

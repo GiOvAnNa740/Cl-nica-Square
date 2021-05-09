@@ -19,8 +19,8 @@ export class AgendaService {
           return dados.agendas.map((agenda:any) => {
             return {
               id: agenda._id,
-              titulo: agenda.titulo,
-              data: agenda.data,
+              title: agenda.title,
+              date: agenda.date,
               hora: agenda.hora,
               medico: agenda.medico,
               paciente: agenda.paciente,
@@ -40,11 +40,11 @@ export class AgendaService {
     return this.listaAgendasAtualizada.asObservable();
   }
 
-  adicionarAgenda(id: string, titulo:string, data:string, hora:string, medico: string, paciente:string, espec:string){
+  adicionarAgenda(id: string, title:string, date:string, hora:string, medico: string, paciente:string, espec:string){
     const agenda: Agenda = {
       id: id,
-      titulo: titulo,
-      data: data,
+      title: title,
+      date: date,
       hora: hora,
       medico: medico,
       paciente: paciente,
