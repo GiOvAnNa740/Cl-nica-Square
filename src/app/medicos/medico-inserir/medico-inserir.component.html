@@ -14,7 +14,7 @@
           id="inputNome"
           placeholder="Informe seu nome completo"
           name="nome"
-          ngModel
+          [ngModel]="medico?.nome"
           #nome="ngModel"
         />
       </div>
@@ -24,7 +24,7 @@
           id="inputSexo"
           class="form-control"
           name="sexo"
-          ngModel
+          [ngModel]="medico?.nome"
           #sexo="ngModel"
         >
           <option selected>Selecione</option>
@@ -40,7 +40,7 @@
           id="inputData"
           placeholder=""
           name="dtnasc"
-          ngModel
+          [ngModel]="medico?.dtnasc"
           #dtNasc="ngModel"
         />
       </div>
@@ -63,7 +63,7 @@
           id="inputEmail"
           placeholder="exemplo@email.com"
           name="email"
-          ngModel
+          [ngModel]="medico?.email"
           #email="ngModel"
         />
       </div>
@@ -75,7 +75,7 @@
           id="inputTelefone"
           placeholder="(00) 0000-0000"
           name="fone"
-          ngModel
+          [ngModel]="medico?.fone"
           #fone="ngModel"
         />
       </div>
@@ -87,7 +87,7 @@
           id="inputCpf"
           placeholder="000.000.000-00"
           name="cpf"
-          ngModel
+          [ngModel]="medico?.cpf"
           #cpf="ngModel"
         />
       </div>
@@ -101,7 +101,7 @@
           id="inputEspec"
           placeholder="Informe apenas uma especialidade"
           name="espec"
-          ngModel
+          [ngModel]="medico?.espec"
           #espec="ngModel"
         />
       </div>
@@ -113,7 +113,7 @@
           id="inputCRM"
           placeholder="000000/XX"
           name="crm"
-          ngModel
+          [ngModel]="medico?.crm"
           #crm="ngModel"
         />
       </div>
@@ -135,7 +135,7 @@
         id="inputSenha"
         placeholder=""
         name="senha"
-        ngModel
+        [ngModel]="medico?.senha"
         #senha="ngModel"
       />
     </div>
@@ -147,7 +147,7 @@
         id="inputSenha2"
         placeholder=""
         name="senhaconf"
-        ngModel
+        [ngModel]="medico?.senhaconf"
         #senhaconf="ngModel"
       />
     </div>

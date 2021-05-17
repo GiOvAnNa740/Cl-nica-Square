@@ -14,7 +14,7 @@ export class AgendaMedicoComponent implements OnInit, OnDestroy  {
 
 
   agendas:Agenda[] = [];
-  
+
   private agendasSubscription!: Subscription;
 
 
@@ -32,4 +32,8 @@ export class AgendaMedicoComponent implements OnInit, OnDestroy  {
         this.agendas = agendas;
       });
   }
+
+  onDelete (id: string): void{
+    this.agendaService.removerAgenda(id);
+    }
 }

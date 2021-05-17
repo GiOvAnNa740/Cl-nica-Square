@@ -10,7 +10,7 @@
         id="inputEspecialidade"
         class="form-control"
         name="espec"
-        ngModel
+        [ngModel]="agenda?.espec"
         #espec="ngModel"
       >
         <option value="Nutrição">Nutrição</option>
@@ -24,7 +24,7 @@
         id="inputPaciente"
         class="form-control"
         name="paciente"
-        ngModel
+        [ngModel]="agenda?.paciente"
         #paciente="ngModel"
       >
         <option selected>Selecione o paciente para filtrar</option>
@@ -45,7 +45,7 @@
         id="inputData"
         placeholder="Selecione uma data"
         name="date"
-        ngModel
+        [ngModel]="agenda?.date"
         #date="ngModel"
       />
     </div>
@@ -57,24 +57,23 @@
         id="inputHora"
         placeholder="Selecione um horário"
         name="hora"
-        ngModel
+        [ngModel]="agenda?.hora"
         #hora="ngModel"
       />
     </div>
   </div>
   <div class="form-row">
     <button type="submit" class="btn btn-info" value="enviar">Agendar</button>
-    <button
+    <!--<button
       type="submit"
       class="btn btn-outline-primary"
       id="btn2"
       value="enviar"
     >
       Consultar
-    </button>
+    </button>-->
   </div>
 
   <full-calendar [options]="calendarOptions"></full-calendar>
-
   <app-agenda-medico class="lista"></app-agenda-medico>
 </form>

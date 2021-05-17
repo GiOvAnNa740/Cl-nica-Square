@@ -7,6 +7,13 @@
       >
       <p>Data: {{ agenda.date }}</p>
       <p>Hora: {{ agenda.hora }}</p>
+      <mat-action-row>
+        <a mat-button color="primary" [routerLink]="['/agendaEditar', agenda.id]">Editar consulta</a>
+        <button mat-button color="warn" (click)="onDelete(agenda.id)">Cancelar consulta</button>
+        </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
+  <p class="mat-body-1" style="text-align: center;" *ngIf="agendas.length <= 0">
+    Nenhuma consulta agendada
+    </p>
 </div>

@@ -10,7 +10,7 @@
         id="inputEspecialidade"
         class="form-control"
         name="espec"
-        ngModel
+        [ngModel]="agenda?.espec"
         #espec="ngModel"
       >
         <option selected>Escolha a especialidade desejada</option>
@@ -25,7 +25,7 @@
         id="inputMedico"
         class="form-control"
         name="medico"
-        ngModel
+        [ngModel]="agenda?.medico"
         #medico="ngModel"
       >
         <option selected>Selecione o médico de preferência</option>
@@ -45,7 +45,7 @@
         id="inputData"
         placeholder="Selecione uma data disponível"
         name="date"
-        ngModel
+        [ngModel]="agenda?.date"
         #date="ngModel"
       />
     </div>
@@ -57,7 +57,7 @@
         id="inputHora"
         placeholder="Selecione um horário disponível"
         name="hora"
-        ngModel
+        [ngModel]="agenda?.hora"
         #hora="ngModel"
       />
     </div>

@@ -15,7 +15,7 @@
           id="inputNome"
           placeholder="Informe seu nome completo"
           name="nome"
-          ngModel
+          [ngModel]="usuario?.nome"
           #nome="ngModel"
         />
       </div>
@@ -26,7 +26,7 @@
           id="inputSexo"
           class="form-control"
           name="sexo"
-          ngModel
+          [ngModel]="usuario?.sexo"
           #sexo="ngModel"
         >
           <option selected>Selecione</option>
@@ -43,7 +43,7 @@
           id="inputData"
           placeholder=""
           name="dtnasc"
-          ngModel
+          [ngModel]="usuario?.dtnasc"
           #dtNasc="ngModel"
         />
       </div>
@@ -67,7 +67,7 @@
           id="inputEmail"
           placeholder="exemplo@email.com"
           name="email"
-          ngModel
+          [ngModel]="usuario?.email"
           #email="ngModel"
         />
       </div>
@@ -80,7 +80,7 @@
           id="inputTelefone"
           placeholder="(00) 0000-0000"
           name="fone"
-          ngModel
+          [ngModel]="usuario?.fone"
           #fone="ngModel"
         />
       </div>
@@ -93,7 +93,7 @@
           id="inputCpf"
           placeholder="000.000.000-00"
           name="cpf"
-          ngModel
+          [ngModel]="usuario?.cpf"
           #cpf="ngModel"
         />
       </div>
@@ -107,7 +107,7 @@
         id="inputSenha"
         placeholder=""
         name="senha"
-        ngModel
+        [ngModel]="usuario?.senha"
         #senha="ngModel"
       />
     </div>
@@ -120,7 +120,7 @@
         id="inputSenha"
         placeholder=""
         name="senhaconf"
-        ngModel
+        [ngModel]="usuario?.senhaconf"
         #senhaconf="ngModel"
       />
     </div>

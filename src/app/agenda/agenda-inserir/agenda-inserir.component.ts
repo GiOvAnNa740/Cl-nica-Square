@@ -3,27 +3,76 @@ import { NgForm } from '@angular/forms';
 import { AgendaService } from '../agenda.service';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+//import { mimeTypeValidator } from './mime-type.validator';
+
 @Component({
   selector: 'app-agenda-inserir',
   templateUrl: './agenda-inserir.component.html',
-  styleUrls: ['./agenda-inserir.component.css']
+  styleUrls: ['./agenda-inserir.component.css'],
 })
-export class AgendaInserirComponent {
-  constructor(public agendaService: AgendaService) {}
+export class AgendaInserirComponent implements OnInit {
+  private modo = 'criar';
+  private idAgenda: any;
+  public agenda: any;
+  public estaCarregando: boolean = false;
+  //form: FormGroup;
+  //previewImagem: string;
+
+  constructor(
+    public agendaService: AgendaService,
+    public route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('idAgenda')) {
+        this.modo = 'agendaEditar';
+        this.idAgenda = paramMap.get('idCliente');
+        this.agendaService.getAgenda(this.idAgenda).subscribe((dadosMe) => {
+          this.agenda = {
+            id: dadosMe._id,
+            title: dadosMe.title,
+            date: dadosMe.date,
+            hora: dadosMe.hora,
+            medico: dadosMe.medico,
+            paciente: dadosMe.paciente,
+            espec: dadosMe.espec,
+          };
+        });
+      } else {
+        this.modo = 'agendaInserir';
+        this.idAgenda = null;
+      }
+    });
+  }
 
   onAdicionarAgenda(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    this.agendaService.adicionarAgenda(
-      form.value.id,
-      form.value.title,
-      form.value.date,
-      form.value.hora,
-      form.value.medico,
-      form.value.paciente,
-      form.value.espec
-    )
+    if (this.modo === 'agendaInserir') {
+      this.agendaService.adicionarAgenda(
+        form.value.id,
+        form.value.title,
+        form.value.date,
+        form.value.hora,
+        form.value.medico,
+        form.value.paciente,
+        form.value.espec
+      );
+    } else {
+      this.agendaService.atualizarAgenda(
+        this.idAgenda,
+        form.value.title,
+        form.value.date,
+        form.value.hora,
+        form.value.medico,
+        form.value.paciente,
+        form.value.espec
+      );
+    }
 
     form.resetForm();
   }
@@ -43,5 +92,4 @@ export class AgendaInserirComponent {
       { title: 'Marco - 9:00', date: '2021-05-27' },
     ],
   };
-
 }

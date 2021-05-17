@@ -19,10 +19,13 @@ const routes: Routes = [
   {path: 'agenda', component:AgendaComponent},
   {path: 'cadastro', component:CadastroComponent},
   {path: 'usuario', component:UsuarioInserirComponent},
+  {path: 'usuarioEditar/:idUsuario', component:UsuarioInserirComponent},
   {path: 'medicos', component:MedicoInserirComponent},
+  {path: 'medicoEditar/:idMedico', component:MedicoInserirComponent},
   {path: 'medicoLista', component:MedicoListaComponent},
   {path: 'agendaMedico', component:AgendaMedicoComponent},
   {path: 'agendaInserir', component:AgendaInserirComponent},
+  {path: 'agendaEditar/:idCliente', component:AgendaInserirComponent},
 ];
 
 @NgModule({

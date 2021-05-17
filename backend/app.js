@@ -1,22 +1,28 @@
+require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const clienteRoutes = require("./rotas/clientes");
+const usuarioRoutes = require("./rotas/usuarios");
 app.use(cors());
 app.use(express.json());
+app.use("/imagens", express.static(path.join("backend/imagens")));
 
 const Usuario = require("./models/usuario"); //mean-15
-const Medico = require("./models/medico")
+const Medico = require("./models/medico");
 
 const userDB = process.env.MONGODB_USER;
 const senhaDB = process.env.MONGODB_PASSWORD;
 const clusterDB = process.env.CLUSTER;
 const db = process.env.MONGODB_DATABASE;
 
-
 //mongodb
 mongoose
-  .connect("mongodb+srv://giovanna:Fiellhp.1910@cluster0.xlmeg.mongodb.net/projetodb?retryWrites=true&w=majority")
+  .connect(
+    "mongodb+srv://giovanna:Fiellhp.1910@cluster0.xlmeg.mongodb.net/projetodb?retryWrites=true&w=majority"
+  )
   .then(() => {
     console.log("Conexão OK");
   })
@@ -24,7 +30,9 @@ mongoose
     console.log("Conexão NOK");
   });
 
-  //usuarios
+//
+
+//usuarios
 
 app.post("/api/usuarios", (req, res, next) => {
   const usuario = new Usuario({
@@ -37,17 +45,29 @@ app.post("/api/usuarios", (req, res, next) => {
     senha: req.body.senha,
     senhaconf: req.body.senhaconf,
   });
-  usuario.save();
-  console.log(usuario);
-  res.status(201).json({ mensagem: "Usuario inserido" });
+  usuario.save().then((usuarioInserido) => {
+    res.status(201).json({
+      mensagem: "Usuário inserido",
+      id: usuarioInserido._id,
+    });
+  });
 });
 
 app.get("/api/usuarios", (req, res, next) => {
   Usuario.find().then((documents) => {
+    console.log(documents);
     res.status(200).json({
       mensagem: "Tudo OK",
       usuarios: documents,
     });
+  });
+});
+
+app.get("/api/usuarios/:id", (req, res, next) => {
+  Usuario.findById(req.params.id).then((us) => {
+    if (us) {
+      res.status(200).json(us);
+    } else res.status(404).json({ mensagem: "Usuário não encontrado!" });
   });
 });
 
@@ -61,6 +81,24 @@ app.use("/api/usuarios", (req, res, next) => {
     mensagem: "Tudo OK",
     usuarios: usuarios,
   });
+});
+
+app.put("/api/usuarios/:id", (req, res, next) => {
+  const usuario = new Usuario({
+    _id: req.params.id,
+    nome: req.body.nome,
+    sexo: req.body.sexo,
+    dtnasc: req.body.dtnasc,
+    email: req.body.email,
+    fone: req.body.fone,
+    cpf: req.body.cpf,
+    senha: req.body.senha,
+    senhaconf: req.body.senhaconf,
+  });
+  Usuario.updateOne({ _id: req.params.id }, usuario).then((resultado) => {
+    console.log(resultado);
+  });
+  res.status(200).json({ mensagem: "Atualização realizada com sucesso" });
 });
 
 //medicos
@@ -78,17 +116,29 @@ app.post("/api/medicos", (req, res, next) => {
     senha: req.body.senha,
     senhaconf: req.body.senhaconf,
   });
-  medico.save();
-  console.log(medico);
-  res.status(201).json({ mensagem: "Medico inserido" });
+  medico.save().then((medicoInserido) => {
+    res.status(201).json({
+      mensagem: "Médico inserido",
+      id: medicoInserido._id,
+    });
+  });
 });
 
 app.get("/api/medicos", (req, res, next) => {
   Medico.find().then((documents) => {
+    console.log(documents);
     res.status(200).json({
       mensagem: "Tudo OK",
       medicos: documents,
     });
+  });
+});
+
+app.get("/api/medicos/:id", (req, res, next) => {
+  Medico.findById(req.params.id).then((me) => {
+    if (me) {
+      res.status(200).json(me);
+    } else res.status(404).json({ mensagem: "Medico não encontrado!" });
   });
 });
 
@@ -104,6 +154,26 @@ app.use("/api/medicos", (req, res, next) => {
   });
 });
 
+app.put("/api/medicos/:id", (req, res, next) => {
+  const medico = new Medico({
+    _id: req.params.id,
+    nome: req.body.nome,
+    sexo: req.body.sexo,
+    dtnasc: req.body.dtnasc,
+    email: req.body.email,
+    fone: req.body.fone,
+    cpf: req.body.cpf,
+    espec: req.body.espec,
+    crm: req.body.crm,
+    senha: req.body.senha,
+    senhaconf: req.body.senhaconf,
+  });
+  Medico.updateOne({ _id: req.params.id }, medico).then((resultado) => {
+    console.log(resultado);
+  });
+  res.status(200).json({ mensagem: "Atualização realizada com sucesso" });
+});
+
 //agenda
 
 app.post("/api/agendas", (req, res, next) => {
@@ -115,17 +185,29 @@ app.post("/api/agendas", (req, res, next) => {
     paciente: req.body.paciente,
     espec: req.body.espec,
   });
-  agenda.save();
-  console.log(agenda);
-  res.status(201).json({ mensagem: "Consulta inserida" });
+  agenda.save().then((agendaInserida) => {
+    res.status(201).json({
+      mensagem: "Consulta inserida",
+      id: agendaInserida._id,
+    });
+  });
 });
 
-app.get("/api/agendas", (req, res, next) => {
+app.get("/api/agendas/", (req, res, next) => {
   Agenda.find().then((documents) => {
+    console.log(documents);
     res.status(200).json({
       mensagem: "Tudo OK",
       agendas: documents,
     });
+  });
+});
+
+app.get("/api/agendas/:id", (req, res, next) => {
+  Agenda.findById(req.params.id).then((ag) => {
+    if (ag) {
+      res.status(200).json(ag);
+    } else res.status(404).json({ mensagem: "Consulta não encontrada!" });
   });
 });
 
@@ -139,6 +221,22 @@ app.use("/api/agendas", (req, res, next) => {
     mensagem: "Tudo OK",
     agendas: agendas,
   });
+});
+
+app.put("/api/agendas/:id", (req, res, next) => {
+  const agenda = new Agenda({
+    _id: req.params.id,
+    title: req.body.title,
+    date: req.body.date,
+    hora: req.body.hora,
+    medico: req.body.medico,
+    paciente: req.body.paciente,
+    espec: req.body.espec,
+  });
+  Agenda.updateOne({ _id: req.params.id }, agenda).then((resultado) => {
+    console.log(resultado);
+  });
+  res.status(200).json({ mensagem: "Atualização realizada com sucesso" });
 });
 
 module.exports = app;
