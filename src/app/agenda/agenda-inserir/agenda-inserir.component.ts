@@ -33,7 +33,6 @@ export class AgendaInserirComponent implements OnInit {
         this.agendaService.getAgenda(this.idAgenda).subscribe((dadosMe) => {
           this.agenda = {
             id: dadosMe._id,
-            title: dadosMe.title,
             date: dadosMe.date,
             hora: dadosMe.hora,
             medico: dadosMe.medico,
@@ -55,7 +54,6 @@ export class AgendaInserirComponent implements OnInit {
     if (this.modo === 'agendaInserir') {
       this.agendaService.adicionarAgenda(
         form.value.id,
-        form.value.title,
         form.value.date,
         form.value.hora,
         form.value.medico,
@@ -65,7 +63,6 @@ export class AgendaInserirComponent implements OnInit {
     } else {
       this.agendaService.atualizarAgenda(
         this.idAgenda,
-        form.value.title,
         form.value.date,
         form.value.hora,
         form.value.medico,

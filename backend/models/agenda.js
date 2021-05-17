@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const agendaSchema = mongoose.Schema({
-  title: { type: String, required: true },
   date: { type: String, required: true },
   hora: { type: String, required: true },
   medico: { type: String, required: true },

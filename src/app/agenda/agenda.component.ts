@@ -28,7 +28,17 @@ export class AgendaComponent {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('idAgenda')) {
         this.modo = 'agendaEditar';
-        this.idAgenda = paramMap.get('idCliente');
+        this.idAgenda = paramMap.get('idAgenda');
+        this.agendaService.getAgenda(this.idAgenda).subscribe((dadosAg) => {
+          this.agenda = {
+            id: dadosAg._id,
+            date: dadosAg.date,
+            hora: dadosAg.hora,
+            medico: dadosAg.medico,
+            paciente: dadosAg.paciente,
+            espec: dadosAg.espec,
+          };
+        });
       } else {
         this.modo = 'agendaInserir';
         this.idAgenda = null;
@@ -42,7 +52,6 @@ export class AgendaComponent {
     if (this.modo === 'agendaInserir') {
       this.agendaService.adicionarAgenda(
         form.value.id,
-        form.value.title,
         form.value.date,
         form.value.hora,
         form.value.medico,
@@ -52,7 +61,6 @@ export class AgendaComponent {
     } else {
       this.agendaService.atualizarAgenda(
         this.idAgenda,
-        form.value.title,
         form.value.date,
         form.value.hora,
         form.value.medico,

@@ -13,14 +13,13 @@ export class AgendaService {
 
   atualizarAgenda(
     id: string,
-    title: string,
     date: string,
     hora: string,
     medico: string,
     paciente: string,
     espec: string
   ) {
-    const agenda: Agenda = { id, title, date, hora, medico, paciente, espec };
+    const agenda: Agenda = { id, date, hora, medico, paciente, espec };
     this.httpClient
       .put(`http://localhost:3000/api/agendas/${id}`, agenda)
       .subscribe((res) => {
@@ -36,7 +35,6 @@ export class AgendaService {
     //return { ...this.agendas.find((ag) => ag.id === idAgenda) };
     return this.httpClient.get<{
       _id: string;
-      title: string;
       date: string;
       hora: string;
       medico: string;
@@ -55,7 +53,6 @@ export class AgendaService {
           return dados.agendas.map((agenda: any) => {
             return {
               id: agenda._id,
-              title: agenda.title,
               date: agenda.date,
               hora: agenda.hora,
               medico: agenda.medico,
@@ -77,7 +74,6 @@ export class AgendaService {
 
   adicionarAgenda(
     id: string,
-    title: string,
     date: string,
     hora: string,
     medico: string,
@@ -86,7 +82,6 @@ export class AgendaService {
   ) {
     const agenda: Agenda = {
       id: id,
-      title: title,
       date: date,
       hora: hora,
       medico: medico,
