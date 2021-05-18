@@ -15,6 +15,7 @@ export class MedicoInserirComponent implements OnInit{
   private idMedico: any;
   public medico: any;
   public estaCarregando: boolean = false;
+  form!: FormGroup;
 
   constructor(
     public medicoService: MedicoService,
@@ -22,6 +23,17 @@ export class MedicoInserirComponent implements OnInit{
   ) {}
 
   ngOnInit() {
+    this.form = new FormGroup({
+      nome: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(3)],
+      }),
+      fone: new FormControl(null, {
+        validators: [Validators.required],
+      }),
+      email: new FormControl(null, {
+        validators: [Validators.required, Validators.email],
+      }),
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('idMedico')) {
         this.modo = 'medicoEditar';
@@ -40,31 +52,59 @@ export class MedicoInserirComponent implements OnInit{
             senha: dadosMe.senha,
             senhaconf: dadosMe.senhaconf,
           };
+          this.form.setValue({
+            nome: this.medico.nome,
+            sexo: this.medico.sexo,
+            dtnasc: this.medico.dtnasc,
+            email: this.medico.email,
+            fone: this.medico.fone,
+            cpf: this.medico.cpf,
+            espec: this.medico.espec,
+            crm: this.medico.crm,
+            senha: this.medico.senha,
+          });
         });
       } else {
-        this.modo = 'medicos';
+        this.modo = 'criar';
         this.idMedico = null;
       }
     });
   }
 
-  onAdicionarMedico(form: NgForm) {
-    if (form.invalid) {
+  onAdicionarMedico() {
+    if (this.form.invalid) {
       return;
     }
+    this.estaCarregando = true;
+    if (this.modo === "criar"){
     this.medicoService.adicionarMedico(
-      form.value.id,
-      form.value.nome,
-      form.value.sexo,
-      form.value.dtnasc,
-      form.value.email,
-      form.value.fone,
-      form.value.cpf,
-      form.value.espec,
-      form.value.crm,
-      form.value.senha,
-      form.value.senhaconf
+      this.form.value.id,
+      this.form.value.nome,
+      this.form.value.sexo,
+      this.form.value.dtnasc,
+      this.form.value.email,
+      this.form.value.fone,
+      this.form.value.cpf,
+      this.form.value.espec,
+      this.form.value.crm,
+      this.form.value.senha,
+      this.form.value.senhaconf
     );
-    form.resetForm();
+    }else{
+      this.medicoService.atualizarMedico(
+        this.idMedico,
+        this.form.value.nome,
+        this.form.value.sexo,
+        this.form.value.dtnasc,
+        this.form.value.email,
+        this.form.value.fone,
+        this.form.value.cpf,
+        this.form.value.espec,
+        this.form.value.crm,
+        this.form.value.senha,
+        this.form.value.senhaconf
+      );
+    }
+    this.form.reset();
   }
 }

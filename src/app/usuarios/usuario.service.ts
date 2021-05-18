@@ -4,12 +4,14 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { Router } from '@angular/router';
+
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
   private usuarios: Usuario[] = [];
   private listaUsuariosAtualizada = new Subject<Usuario[]>();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,private router: Router) {}
 
 
   atualizarUsuario(
@@ -32,6 +34,7 @@ export class UsuarioService {
         copia[indice] = usuario;
         this.usuarios = copia;
         this.listaUsuariosAtualizada.next([...this.usuarios]);
+        this.router.navigate(['/'])
         }));
   }
 
@@ -112,6 +115,7 @@ export class UsuarioService {
         usuario.id = dados.id;
         this.usuarios.push(usuario);
         this.listaUsuariosAtualizada.next([...this.usuarios]);
+        this.router.navigate(['/'])
       });
   }
 }

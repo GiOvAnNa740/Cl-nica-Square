@@ -10,8 +10,7 @@
         id="inputPaciente"
         class="form-control"
         name="paciente"
-        ngModel
-        #paciente="ngModel"
+        formControlName="paciente"
       >
         <option selected>Selecione o paciente para filtrar</option>
         <option value="Todos">Todos</option>
@@ -22,13 +21,12 @@
       </select>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputTipo">O</label>
+      <label for="inputTipo">Categoria</label>
       <select
         id="inputTipo"
         class="form-control"
         name="tipo"
-        ngModel
-        #tipo="ngModel"
+        formControlName="tipo"
       >
         <option selected>Selecione o que gostaria de adicionar</option>
         <option value="Medicação">Medicação</option>
@@ -39,17 +37,15 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputTexto">Data </label>
-      <input
-        type="text"
+    <div class="form-group col-md-12">
+      <label for="inputTexto">Texto</label>
+      <textarea
         class="form-control"
         id="inputTexto"
-        placeholder="Digite o que gostaria de adicionar à ficha do paciente"
         name="texto"
-        ngModel
-        #texto="ngModel"
-      />
+        formControlName="texto"
+        rows="6"
+      ></textarea>
     </div>
   </div>
   <div class="form-row">

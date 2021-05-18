@@ -1,11 +1,13 @@
+mat-spinner {
+  margin: auto;
+}
 
-div{
+div {
   margin-top: 60px;
   margin-left: 80px;
   margin-right: 80px;
 }
 
-h5{
+h5 {
   margin-bottom: 40px;
-
 }

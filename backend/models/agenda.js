@@ -10,4 +10,3 @@ const agendaSchema = mongoose.Schema({
 
 module.exports = mongoose.model("Agenda", agendaSchema);
 
-export default agenda;

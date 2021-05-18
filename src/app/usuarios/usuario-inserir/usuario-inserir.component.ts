@@ -12,10 +12,11 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./usuario-inserir.component.css'],
 })
 export class UsuarioInserirComponent implements OnInit {
-  private modo = 'criar';
+  private modo = "criar";
   private idUsuario: any;
   public usuario: any; //public cliente: Cliente;
   public estaCarregando: boolean = false;
+  form: FormGroup;
 
   constructor(
     public usuarioService: UsuarioService,
@@ -23,12 +24,25 @@ export class UsuarioInserirComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.form = new FormGroup({
+      nome: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(3)],
+      }),
+      fone: new FormControl(null, {
+        validators: [Validators.required],
+      }),
+      email: new FormControl(null, {
+        validators: [Validators.required, Validators.email],
+      }),
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('idUsuario')) {
         this.modo = 'usuarioEditar';
         this.idUsuario = paramMap.get('idUsuario');
+        this.estaCarregando = true;
         // this.usuario = this.usuarioService.getUsuario(this.idUsuario);
         this.usuarioService.getUsuario(this.idUsuario).subscribe((dadosUs) => {
+          this.estaCarregando = false;
           this.usuario = {
             id: dadosUs._id,
             nome: dadosUs.nome,
@@ -40,43 +54,54 @@ export class UsuarioInserirComponent implements OnInit {
             senha: dadosUs.senha,
             senhaconf: dadosUs.senhaconf,
           };
+          this.form.setValue({
+            nome: this.usuario.nome,
+            sexo: this.usuario.sexo,
+            dtnasc: this.usuario.dtnasc,
+            email: this.usuario.email,
+            fone: this.usuario.fone,
+            cpf: this.usuario.cpf,
+            senha: this.usuario.senha,
+          });
         });
       } else {
-        this.modo = 'usuarios';
+        this.modo = 'criar';
         this.idUsuario = null;
       }
     });
   }
 
-  onAdicionarUsuario(form: NgForm) {
-    if (form.invalid) {
+  onAdicionarUsuario() {
+    //aka SalvarUsuario
+    if (this.form.invalid) {
       return;
     }
-    if (this.modo === 'usuarios') {
+    this.estaCarregando = true;
+    if (this.modo === 'criar') {
       this.usuarioService.adicionarUsuario(
-        form.value.id, //
-        form.value.nome,
-        form.value.sexo,
-        form.value.dtnasc,
-        form.value.email,
-        form.value.fone,
-        form.value.cpf,
-        form.value.senha,
-        form.value.senhaconf
+        this.form.value.id, //
+        this.form.value.nome,
+        this.form.value.sexo,
+        this.form.value.dtnasc,
+        this.form.value.email,
+        this.form.value.fone,
+        this.form.value.cpf,
+        this.form.value.senha,
+        this.form.value.senhaconf
       );
     } else {
       this.usuarioService.atualizarUsuario(
         this.idUsuario,
-        form.value.nome,
-        form.value.sexo,
-        form.value.dtnasc,
-        form.value.email,
-        form.value.fone,
-        form.value.cpf,
-        form.value.senha,
-        form.value.senhaconf
+        this.form.value.nome,
+        this.form.value.sexo,
+        this.form.value.dtnasc,
+        this.form.value.email,
+        this.form.value.fone,
+        this.form.value.cpf,
+        this.form.value.senha,
+        this.form.value.senhaconf
       );
     }
-    form.resetForm();
+    this.form.reset();
   }
 }

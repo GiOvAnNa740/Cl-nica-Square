@@ -1,3 +1,7 @@
+mat-spinner {
+  margin: auto;
+}
+
 form {
   margin-top: 60px;
   margin-left: 80px;
@@ -14,9 +18,9 @@ hr.dashed {
 }
 
 label {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 div .form-check {
-    margin-left: 5px;
+  margin-left: 5px;
 }

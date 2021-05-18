@@ -8,6 +8,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
 import { MedicoInserirComponent } from './medicos/medico-inserir/medico-inserir.component';
 import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component';
+import { MedicoReceitaComponent } from './receita/medico-receita/medico-receita.component';
 import { AgendaMedicoComponent } from './agenda/agenda-medico/agenda-medico.component';
 import { AgendaInserirComponent } from './agenda/agenda-inserir/agenda-inserir.component';
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'usuario', component:UsuarioInserirComponent},
   {path: 'usuarioEditar/:idUsuario', component:UsuarioInserirComponent},
   {path: 'medicos', component:MedicoInserirComponent},
+  {path: 'medicoReceita', component:MedicoReceitaComponent},
   {path: 'medicoEditar/:idMedico', component:MedicoInserirComponent},
   {path: 'medicoLista', component:MedicoListaComponent},
   {path: 'agendaMedico', component:AgendaMedicoComponent},

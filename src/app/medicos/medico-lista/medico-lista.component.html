@@ -1,6 +1,7 @@
 <div>
   <h5>Conheça nossos médicos</h5>
-  <mat-accordion *ngIf="medicos.length > 0">
+  <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+  <mat-accordion *ngIf="medicos.length > 0 && !estaCarregando">
     <mat-expansion-panel *ngFor="let medico of medicos">
       <mat-expansion-panel-header
         >{{ medico.nome }} - {{ medico.espec }}</mat-expansion-panel-header

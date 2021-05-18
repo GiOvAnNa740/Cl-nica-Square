@@ -12,6 +12,7 @@ export class MedicoListaComponent implements OnInit, OnDestroy  {
 
   medicos:Medico[] = [];
   private medicosSubscription!: Subscription;
+  public estaCarregando = false;
 
 
   constructor(public medicoService: MedicoService) { }
@@ -21,10 +22,12 @@ export class MedicoListaComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit(): void {
+    this.estaCarregando = true;
     this.medicoService.getMedicos();
     this.medicosSubscription = this.medicoService
       .getListaDeMedicosAtualizadaObservable()
       .subscribe((medicos: Medico[]) => {
+        this.estaCarregando = false;
         this.medicos = medicos;
       });
   }
