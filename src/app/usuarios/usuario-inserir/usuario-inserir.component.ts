@@ -12,11 +12,11 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./usuario-inserir.component.css'],
 })
 export class UsuarioInserirComponent implements OnInit {
-  private modo = "criar";
+  private modo = 'criar';
   private idUsuario: any;
   public usuario: any; //public cliente: Cliente;
   public estaCarregando: boolean = false;
-  form: FormGroup;
+  form!: FormGroup;
 
   constructor(
     public usuarioService: UsuarioService,
@@ -56,52 +56,48 @@ export class UsuarioInserirComponent implements OnInit {
           };
           this.form.setValue({
             nome: this.usuario.nome,
-            sexo: this.usuario.sexo,
-            dtnasc: this.usuario.dtnasc,
-            email: this.usuario.email,
             fone: this.usuario.fone,
-            cpf: this.usuario.cpf,
-            senha: this.usuario.senha,
+            email: this.usuario.email,
           });
         });
       } else {
-        this.modo = 'criar';
+        this.modo = 'usuarios';
         this.idUsuario = null;
       }
     });
   }
 
-  onAdicionarUsuario() {
+  onAdicionarUsuario(form: NgForm) {
     //aka SalvarUsuario
-    if (this.form.invalid) {
+    if (form.invalid) {
       return;
     }
     this.estaCarregando = true;
-    if (this.modo === 'criar') {
+    if (this.modo === 'usuarios') {
       this.usuarioService.adicionarUsuario(
-        this.form.value.id, //
-        this.form.value.nome,
-        this.form.value.sexo,
-        this.form.value.dtnasc,
-        this.form.value.email,
-        this.form.value.fone,
-        this.form.value.cpf,
-        this.form.value.senha,
-        this.form.value.senhaconf
+        form.value.id, //
+        form.value.nome,
+        form.value.sexo,
+        form.value.dtnasc,
+        form.value.email,
+        form.value.fone,
+        form.value.cpf,
+        form.value.senha,
+        form.value.senhaconf
       );
     } else {
       this.usuarioService.atualizarUsuario(
         this.idUsuario,
-        this.form.value.nome,
-        this.form.value.sexo,
-        this.form.value.dtnasc,
-        this.form.value.email,
-        this.form.value.fone,
-        this.form.value.cpf,
-        this.form.value.senha,
-        this.form.value.senhaconf
+        form.value.nome,
+        form.value.sexo,
+        form.value.dtnasc,
+        form.value.email,
+        form.value.fone,
+        form.value.cpf,
+        form.value.senha,
+        form.value.senhaconf
       );
     }
-    this.form.reset();
+    form.resetForm();
   }
 }

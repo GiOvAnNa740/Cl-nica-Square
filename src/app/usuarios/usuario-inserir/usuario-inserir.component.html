@@ -3,7 +3,7 @@
   src="https://code.jquery.com/jquery-3.2.1.min.js"
 ></script>
 <mat-spinner *ngIf="estaCarregando"></mat-spinner>
-<form [formGroup]="form" (submit)="onAdicionarUsuario()" *ngIf="!estaCarregando">
+<form (submit)="onAdicionarUsuario(usuarioForm)" *ngIf="!estaCarregando" #usuarioForm="ngForm">
   <div class="dados-pessoais">
     <h5>Dados pessoais</h5>
     <div class="form-row">
@@ -15,8 +15,9 @@
           class="form-control"
           id="inputNome"
           placeholder="Informe seu nome completo"
-          formControlName="nome"
           name="nome"
+          [ngModel]="usuario?.nome"
+          #nome="ngModel"
         />
       </div>
       <div class="form-group col-md-1">
@@ -25,8 +26,9 @@
           required
           id="inputSexo"
           class="form-control"
-          formControlName="sexo"
           name="sexo"
+          [ngModel]="usuario?.sexo"
+          #sexo="ngModel"
         >
           <option selected>Selecione</option>
           <option value="Feminino">Feminino</option>
@@ -41,8 +43,9 @@
           class="form-control"
           id="inputData"
           placeholder=""
-          formControlName="dtnasc"
           name="dtnasc"
+          [ngModel]="usuario?.dtnasc"
+          #dtNasc="ngModel"
         />
       </div>
       <div class="form-group col-md-3">
@@ -52,7 +55,6 @@
           accept="image/*"
           class="form-control"
           id="inputFoto"
-          name="foto"
         />
       </div>
     </div>
@@ -65,8 +67,9 @@
           class="form-control"
           id="inputEmail"
           placeholder="exemplo@email.com"
-          formControlName="email"
           name="email"
+          [ngModel]="usuario?.email"
+          #email="ngModel"
         />
       </div>
       <div class="form-group col-md-3">
@@ -77,8 +80,9 @@
           class="form-control"
           id="inputTelefone"
           placeholder="(00) 0000-0000"
-          formControlName="fone"
           name="fone"
+          [ngModel]="usuario?.fone"
+          #fone="ngModel"
         />
       </div>
       <div class="form-group col-md-3">
@@ -89,8 +93,9 @@
           class="form-control"
           id="inputCpf"
           placeholder="000.000.000-00"
-          formControlName="cpf"
           name="cpf"
+          [ngModel]="usuario?.cpf"
+          #cpf="ngModel"
         />
       </div>
     </div>
@@ -102,8 +107,9 @@
         class="form-control"
         id="inputSenha"
         placeholder=""
-        formControlName="senha"
         name="senha"
+        [ngModel]="usuario?.senha"
+        #senha="ngModel"
       />
     </div>
     <div class="form-group">
@@ -114,8 +120,9 @@
         class="form-control"
         id="inputSenha"
         placeholder=""
-        formControlName="senhaconf"
         name="senhaconf"
+        [ngModel]="usuario?.senhaconf"
+        #senhaconf="ngModel"
       />
     </div>
   </div>
@@ -207,7 +214,7 @@
       varWindow = window.open("popup.html", "popup");
     }
   </script>
-  <button type="submit" class="btn btn-info">
+  <button type="submit" class="btn btn-info" href="javascript:newPopup()">
     Finalizar cadastro
   </button>
 </form>
