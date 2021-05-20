@@ -4,13 +4,13 @@ import { AgendaComponent } from './agenda/agenda.component';
 import { HomeComponent } from './home/home.component';
 import { SignComponent } from './sign/sign.component';
 import { SobreComponent } from './sobre/sobre.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
 import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
 import { MedicoInserirComponent } from './medicos/medico-inserir/medico-inserir.component';
 import { MedicoListaComponent } from './medicos/medico-lista/medico-lista.component';
 import { MedicoReceitaComponent } from './receita/medico-receita/medico-receita.component';
 import { AgendaMedicoComponent } from './agenda/agenda-medico/agenda-medico.component';
 import { AgendaInserirComponent } from './agenda/agenda-inserir/agenda-inserir.component';
+import { LoginComponent } from './usuarios/login/login.component';
 
 
 const routes: Routes = [
@@ -18,7 +18,6 @@ const routes: Routes = [
   {path: 'sobre', component:SobreComponent},
   {path: 'sign', component:SignComponent},
   {path: 'agenda', component:AgendaComponent},
-  {path: 'cadastro', component:CadastroComponent},
   {path: 'usuario', component:UsuarioInserirComponent},
   {path: 'usuarioEditar/:idUsuario', component:UsuarioInserirComponent},
   {path: 'medicos', component:MedicoInserirComponent},
@@ -28,6 +27,7 @@ const routes: Routes = [
   {path: 'agendaMedico', component:AgendaMedicoComponent},
   {path: 'agendaInserir', component:AgendaInserirComponent},
   {path: 'agendaEditar/:idCliente', component:AgendaInserirComponent},
+  {path: 'login', component:LoginComponent},
 ];
 
 @NgModule({

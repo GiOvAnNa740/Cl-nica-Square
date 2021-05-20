@@ -1,27 +1,36 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 module.exports = router;
-const Usuario = require('../models/usuario');
-
+const Usuario = require("../models/usuario");
+const bcrypt = require("bcrypt");
 
 //usuarios
 
 router.post("/api/usuarios", (req, res, next) => {
-  const usuario = new Usuario({
-    nome: req.body.nome,
-    sexo: req.body.sexo,
-    dtnasc: req.body.dtnasc,
-    email: req.body.email,
-    fone: req.body.fone,
-    cpf: req.body.cpf,
-    senha: req.body.senha,
-    senhaconf: req.body.senhaconf,
-  });
-  usuario.save().then((usuarioInserido) => {
-    res.status(201).json({
-      mensagem: "Usuário inserido",
-      id: usuarioInserido._id,
+  bcrypt.hash(req.body.senha, 10).then((hash) => {
+    const usuario = new Usuario({
+      nome: req.body.nome,
+      sexo: req.body.sexo,
+      dtnasc: req.body.dtnasc,
+      email: req.body.email,
+      fone: req.body.fone,
+      cpf: req.body.cpf,
+      senha: hash,
+      senhaconf: req.body.senhaconf,
     });
+    usuario
+      .save()
+      .then((usuarioInserido) => {
+        res.status(201).json({
+          mensagem: "Usuario criado",
+          resultado: usuarioInserido._id,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          erro: err,
+        });
+      });
   });
 });
 
@@ -47,8 +56,6 @@ router.delete("/api/usuarios/:id", (req, res, next) => {
   console.log(req.params);
   res.status(200).end();
 });
-
-
 
 router.put("/api/usuarios/:id", (req, res, next) => {
   const usuario = new Usuario({

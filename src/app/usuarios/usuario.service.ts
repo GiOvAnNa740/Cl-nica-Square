@@ -5,14 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
+import { AuthData } from './auth-data.model';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
   private usuarios: Usuario[] = [];
   private listaUsuariosAtualizada = new Subject<Usuario[]>();
 
-  constructor(private httpClient: HttpClient,private router: Router) {}
-
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   atualizarUsuario(
     id: string,
@@ -25,30 +25,40 @@ export class UsuarioService {
     senha: string,
     senhaconf: string
   ) {
-    const usuario: Usuario = { id, nome, sexo,dtnasc, email, fone, cpf, senha, senhaconf };
+    const usuario: Usuario = {
+      id,
+      nome,
+      sexo,
+      dtnasc,
+      email,
+      fone,
+      cpf,
+      senha,
+      senhaconf,
+    };
     this.httpClient
       .put(`http://localhost:3000/api/usuarios/${id}`, usuario)
-      .subscribe((res => {
+      .subscribe((res) => {
         const copia = [...this.usuarios];
-        const indice = copia.findIndex (us => us.id === usuario.id);
+        const indice = copia.findIndex((us) => us.id === usuario.id);
         copia[indice] = usuario;
         this.usuarios = copia;
         this.listaUsuariosAtualizada.next([...this.usuarios]);
-        this.router.navigate(['/'])
-        }));
+        this.router.navigate(['/']);
+      });
   }
 
   getUsuario(idUsuario: string) {
     return this.httpClient.get<{
       _id: string;
-      nome: string,
-      sexo: string,
-      dtnasc: string,
-      email: string,
-      fone: string,
-      cpf: string,
-      senha: string,
-      senhaconf: string
+      nome: string;
+      sexo: string;
+      dtnasc: string;
+      email: string;
+      fone: string;
+      cpf: string;
+      senha: string;
+      senhaconf: string;
     }>(`http://localhost:3000/api/usuarios/${idUsuario}`);
   }
 
@@ -95,6 +105,15 @@ export class UsuarioService {
     senha: string,
     senhaconf: string
   ) {
+    const authData: AuthData = {
+      email: email,
+      senha: senha,
+    };
+    this.httpClient
+      .post('http://localhost:3000/api/usuarios', authData)
+      .subscribe((resposta) => {
+        console.log(resposta);
+      });
     const usuario: Usuario = {
       id: id,
       nome: nome,
@@ -115,7 +134,7 @@ export class UsuarioService {
         usuario.id = dados.id;
         this.usuarios.push(usuario);
         this.listaUsuariosAtualizada.next([...this.usuarios]);
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       });
   }
 }

@@ -12,7 +12,7 @@ const agendaRoutes = require ('./rotas/agendas');
 
 app.use(cors());
 app.use(express.json());
-app.use("/imagens", express.static(path.join("backend/imagens")));
+//app.use("/imagens", express.static(path.join("backend/imagens")));
 
 const Usuario = require("./models/usuario"); //mean-15
 const Medico = require("./models/medico");

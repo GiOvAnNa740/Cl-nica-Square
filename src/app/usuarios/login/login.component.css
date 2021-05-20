@@ -1,0 +1,27 @@
+form {
+  margin-top: 60px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+h4 {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+hr.dashed {
+  border-top: 3px dotted rgb(31, 31, 31);
+}
+
+label {
+    font-size: 14px;
+}
+
+p {
+  font-size: 15px;
+}
+
+.form-check {
+  margin-left: 5px;
+  margin-bottom: 20px;
+}

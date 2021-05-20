@@ -29,7 +29,6 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { SignComponent } from './sign/sign.component';
 import { SobreComponent } from './sobre/sobre.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
 import { UsuarioService } from './usuarios/usuario.service';
@@ -39,6 +38,7 @@ import { AgendaMedicoComponent } from './agenda/agenda-medico/agenda-medico.comp
 import { FooterComponent } from './footer/footer.component';
 import { AgendaInserirComponent } from './agenda/agenda-inserir/agenda-inserir.component';
 import { MedicoReceitaComponent } from './receita/medico-receita/medico-receita.component';
+import { LoginComponent } from './usuarios/login/login.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -54,7 +54,6 @@ FullCalendarModule.registerPlugins([
     MenuComponent,
     SignComponent,
     SobreComponent,
-    CadastroComponent,
     AgendaComponent,
     UsuarioInserirComponent,
     MedicoInserirComponent,
@@ -63,6 +62,7 @@ FullCalendarModule.registerPlugins([
     FooterComponent,
     AgendaInserirComponent,
     MedicoReceitaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

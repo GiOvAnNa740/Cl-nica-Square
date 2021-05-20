@@ -19,7 +19,7 @@ export class UsuarioInserirComponent implements OnInit {
   form!: FormGroup;
 
   constructor(
-    public usuarioService: UsuarioService,
+    private usuarioService: UsuarioService,
     public route: ActivatedRoute
   ) {}
 
