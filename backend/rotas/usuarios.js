@@ -25,11 +25,18 @@ router.post("/login", (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        { email: user.email, id: user._id },
+        {
+          email: user.email,
+          id: user._id,
+        },
         "minhasenha",
         { expiresIn: "1h" }
       );
-      res.status(200).json({ token: token });
+      res.status(200).json({
+        token: token,
+        expiresIn: 3600,
+        idUsuario: user._id,
+      });
     })
     .catch((err) => {
       return res.status(401).json({
@@ -39,7 +46,7 @@ router.post("/login", (req, res, next) => {
 });
 
 //usuarios
-router.post("/api/usuarios", (req, res, next) => {
+router.post("/usuario", (req, res, next) => {
   bcrypt.hash(req.body.senha, 10).then((hash) => {
     const usuario = new Usuario({
       nome: req.body.nome,
@@ -53,21 +60,22 @@ router.post("/api/usuarios", (req, res, next) => {
     });
     usuario
       .save()
-      .then((usuarioInserido) => {
+      .then((result) => {
         res.status(201).json({
           mensagem: "Usuario criado",
-          resultado: usuarioInserido._id,
+          resultado: result,
         });
       })
-      .catch((err) => {
+      .catch((erro) => {
+        console.log(erro);
         res.status(500).json({
-          erro: err,
+          mensagem: "Tente novamente mais tarde",
         });
       });
   });
 });
 
-router.get("/api/usuarios", (req, res, next) => {
+router.get("/usuario", (req, res, next) => {
   Usuario.find().then((documents) => {
     console.log(documents);
     res.status(200).json({
@@ -77,7 +85,7 @@ router.get("/api/usuarios", (req, res, next) => {
   });
 });
 
-router.get("/api/usuarios/:id", (req, res, next) => {
+router.get("/usuario/:id", (req, res, next) => {
   Usuario.findById(req.params.id).then((us) => {
     if (us) {
       res.status(200).json(us);

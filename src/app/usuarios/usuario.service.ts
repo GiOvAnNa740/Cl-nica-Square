@@ -145,7 +145,7 @@ export class UsuarioService {
         usuario.id = dados.id;
         this.usuarios.push(usuario);
         this.listaUsuariosAtualizada.next([...this.usuarios]);
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       });
   }
   login(email: string, senha: string) {

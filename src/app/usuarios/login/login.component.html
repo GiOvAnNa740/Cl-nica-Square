@@ -20,6 +20,7 @@
           required
           email
         />
+        <mat-error *ngIf="emailInput.invalid">Digite um e-mail válido</mat-error>
       </div>
     </div>
     <div class="form-group">
@@ -29,10 +30,11 @@
         class="form-control"
         id="inputSenha"
         placeholder=""
-        name="password"
-        #passwordInput="ngModel"
         ngModel
+        name="senha"
+        #senhaInput="ngModel"
       />
+      <mat-error *ngIf="senhaInput.invalid">Senha inválida</mat-error>
     </div>
   </div>
   <div class="form-check">
