@@ -44,30 +44,7 @@
             <a class="nav-link" routerLink="medicos">Sobre nós</a>
           </span>
         </li>
-        <li class="nav-item dropdown">
-          <span>
-            <a
-              class="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Especialidades
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">ex1</a></li>
-              <li><a class="dropdown-item" href="#">ex2</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">ex3</a></li>
-              <li><a class="dropdown-item" href="#">ex4</a></li>
-            </ul>
-          </span>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="autenticado">
           <span>
             <a class="nav-link" routerLink="agenda">Agenda (usuário)</a>
           </span>
@@ -79,14 +56,19 @@
         </li>
         <li class="nav-item">
           <span>
-            <a class="nav-link" routerLink="medicoReceita">Meus pacientes (médico)</a>
+            <a class="nav-link" routerLink="medicoReceita"
+              >Meus pacientes (médico)</a
+            >
           </span>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!autenticado">
           <span>
             <!--voltar para sign-->
             <a class="btn btn-info" id="btn2" routerLink="login">Login</a>
           </span>
+        </li>
+        <li *ngIf="autenticado">
+          <button (click)="onLogout()" mat-button>Logout</button>
         </li>
       </ul>
     </div>

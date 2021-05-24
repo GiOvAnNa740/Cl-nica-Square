@@ -2,13 +2,14 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const app = express();
-const bodyParser = require ('body-parser');
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const usuarioRoutes = require ('./rotas/usuarios');
-const medicoRoutes = require ('./rotas/medicos');
-const agendaRoutes = require ('./rotas/agendas');
+const usuarioRoutes = require("./rotas/usuarios");
+const medicoRoutes = require("./rotas/medicos");
+const agendaRoutes = require("./rotas/agendas");
+const receitaRoutes = require("./rotas/receitas");
 
 app.use(cors());
 app.use(express.json());
@@ -37,7 +38,7 @@ mongoose
   });
 
 //usuarios
-app.use (usuarioRoutes);
+app.use(usuarioRoutes);
 
 app.use("/api/usuarios", (req, res, next) => {
   res.status(200).json({
@@ -48,20 +49,27 @@ app.use("/api/usuarios", (req, res, next) => {
 
 //medicos
 
-app.use (medicoRoutes);
+app.use(medicoRoutes);
 
 app.use("/api/medicos", (req, res, next) => {
   res.status(200).json({
     mensagem: "Tudo OK",
     medicos: medicos,
   });
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type,Accept, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE,OPTIONS"
+  );
 });
-
-
 
 //agenda
 
-app.use (agendaRoutes);
+app.use(agendaRoutes);
 
 app.use("/api/agendas", (req, res, next) => {
   res.status(200).json({
@@ -70,5 +78,14 @@ app.use("/api/agendas", (req, res, next) => {
   });
 });
 
+//receitas
+app.use(receitaRoutes);
+
+app.use("/api/receitas", (req, res, next) => {
+  res.status(200).json({
+    mensagem: "Tudo OK",
+    receitas: receitas,
+  });
+});
 
 module.exports = app;

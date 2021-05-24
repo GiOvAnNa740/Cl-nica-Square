@@ -2,7 +2,7 @@
   type="text/javascript"
   src="https://code.jquery.com/jquery-3.2.1.min.js"
 ></script>
-<form [formGroup]="form" (submit)="onAdicionarAgenda()">
+<form (submit)="onAdicionarAgenda(agendaForm)" *ngIf="!estaCarregando" #agendaForm="ngForm">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEspecialidade">Especialidade</label>
@@ -10,7 +10,8 @@
         id="inputEspecialidade"
         class="form-control"
         name="espec"
-        formControlName="nome"
+        [ngModel]="agenda?.espec"
+        #espec="ngModel"
       >
         <option value="Nutrição">Nutrição</option>
         <option value="Psicologia">Psicologia</option>
@@ -23,14 +24,15 @@
         id="inputPaciente"
         class="form-control"
         name="paciente"
-        formControlName="paciente"
+        [ngModel]="agenda?.paciente"
+        #paciente="ngModel"
       >
         <option selected>Selecione o paciente para filtrar</option>
         <option value="Todos">Todos</option>
-        <option value="1">paciente</option>
-        <option value="2">paciente</option>
-        <option value="3">paciente</option>
-        <option value="4">paciente</option>
+        <option value="Bianca">Bianca</option>
+        <option value="Rejane">Rejane</option>
+        <option value="Maria">Maria</option>
+        <option value="Teste">Teste</option>
       </select>
     </div>
   </div>
@@ -43,7 +45,8 @@
         id="inputData"
         placeholder="Selecione uma data"
         name="date"
-        formControlName="date"
+        [ngModel]="agenda?.date"
+        #date="ngModel"
       />
     </div>
     <div class="form-group col-md-6">
@@ -54,7 +57,8 @@
         id="inputHora"
         placeholder="Selecione um horário"
         name="hora"
-        formControlName="hora"
+        [ngModel]="agenda?.hora"
+        #hora="ngModel"
       />
     </div>
   </div>

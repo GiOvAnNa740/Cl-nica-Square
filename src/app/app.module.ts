@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,6 +39,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AgendaInserirComponent } from './agenda/agenda-inserir/agenda-inserir.component';
 import { MedicoReceitaComponent } from './receita/medico-receita/medico-receita.component';
 import { LoginComponent } from './usuarios/login/login.component';
+
+import { AuthInterceptor } from './usuarios/auth-interceptor';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -83,7 +85,9 @@ FullCalendarModule.registerPlugins([
       useFactory: adapterFactory,
     }),
   ],
-  providers: [UsuarioService],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

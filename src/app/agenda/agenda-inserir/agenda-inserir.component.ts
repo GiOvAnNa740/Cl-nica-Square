@@ -65,31 +65,31 @@ export class AgendaInserirComponent implements OnInit {
     });
   }
 
-  onAdicionarAgenda() {
-    if (this.form.invalid) {
+  onAdicionarAgenda(form: NgForm) {
+    if (form.invalid) {
       return;
     }
     this.estaCarregando = true;
     if (this.modo === 'criar') {
       this.agendaService.adicionarAgenda(
-        this.form.value.id,
-        this.form.value.date,
-        this.form.value.hora,
-        this.form.value.medico,
-        this.form.value.paciente,
-        this.form.value.espec
+        form.value.id,
+        form.value.date,
+        form.value.hora,
+        form.value.medico,
+        form.value.paciente,
+        form.value.espec
       );
     } else {
       this.agendaService.atualizarAgenda(
         this.idAgenda,
-        this.form.value.date,
-        this.form.value.hora,
-        this.form.value.medico,
-        this.form.value.paciente,
-        this.form.value.espec
+        form.value.date,
+        form.value.hora,
+        form.value.medico,
+        form.value.paciente,
+        form.value.espec
       );
     }
-    this.form.reset();
+    form.reset();
   }
 
   calendarOptions: CalendarOptions = {
@@ -97,7 +97,7 @@ export class AgendaInserirComponent implements OnInit {
     locale: 'pt-br',
     dayMaxEvents: true, // allow "more" link when too many events
     events: [
-      { title: 'Giovanna - 13:00', date: '2021-05-06' },
+     // { title: this.form.value.paciente, date: this.form.value.date },
       { title: 'Bianca - 12:00', date: '2021-05-10' },
       { title: 'Gabriel - 9:00', date: '2021-04-30' },
       { title: 'Maria - 8:00', date: '2021-05-19' },

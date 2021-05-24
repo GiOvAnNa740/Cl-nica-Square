@@ -63,31 +63,30 @@ export class AgendaComponent {
       }
     });
   }
-  onAdicionarAgenda() {
-    if (this.form.invalid) {
+  onAdicionarAgenda(form: NgForm) {
+    if (form.invalid) {
       return;
     }
     if (this.modo === 'criar') {
       this.agendaService.adicionarAgenda(
-        this.form.value.id,
-        this.form.value.date,
-        this.form.value.hora,
-        this.form.value.medico,
-        this.form.value.paciente,
-        this.form.value.espec
+        form.value.id,
+        form.value.date,
+        form.value.hora,
+        form.value.medico,
+        form.value.paciente,
+        form.value.espec
       );
     } else {
       this.agendaService.atualizarAgenda(
         this.idAgenda,
-        this.form.value.date,
-        this.form.value.hora,
-        this.form.value.medico,
-        this.form.value.paciente,
-        this.form.value.espec
+        form.value.date,
+        form.value.hora,
+        form.value.medico,
+        form.value.paciente,
+        form.value.espec
       );
     }
-
-    this.form.reset();
+    form.reset();
   }
 
   calendarOptions: CalendarOptions = {

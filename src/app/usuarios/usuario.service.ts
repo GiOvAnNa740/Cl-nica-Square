@@ -9,8 +9,19 @@ import { AuthData } from './auth-data.model';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
+  private autenticado: boolean = false;
+  private token: any;
+  private authStatusSubject = new Subject<boolean>();
   private usuarios: Usuario[] = [];
   private listaUsuariosAtualizada = new Subject<Usuario[]>();
+
+  public getToken(): string {
+    return this.token;
+  }
+
+  public getStatusSubject() {
+    return this.authStatusSubject.asObservable();
+  }
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
@@ -136,5 +147,30 @@ export class UsuarioService {
         this.listaUsuariosAtualizada.next([...this.usuarios]);
         this.router.navigate(['/']);
       });
+  }
+  login(email: string, senha: string) {
+    const authData: AuthData = {
+      email: email,
+      senha: senha,
+    };
+    this.httpClient
+      .post<{ token: string }>(
+        'http://localhost:3000/api/usuarios',
+        authData
+      )
+      .subscribe((resposta) => {
+        this.token = resposta.token;
+        if (this.token) {
+          this.autenticado = true;
+          this.authStatusSubject.next(true);
+          this.router.navigate(['/'])
+        }
+      });
+  }
+
+  logout() {
+    this.token = null;
+    this.authStatusSubject.next(false);
+    this.router.navigate(['/'])
   }
 }
