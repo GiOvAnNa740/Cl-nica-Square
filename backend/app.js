@@ -15,9 +15,9 @@ app.use(cors());
 app.use(express.json());
 //app.use("/imagens", express.static(path.join("backend/imagens")));
 
-//const Usuario = require("./models/usuario"); //mean-15
-//const Medico = require("./models/medico");
-//const Agenda = require("./models/agenda");
+const Usuario = require("./models/usuario"); //mean-15
+const Medico = require("./models/medico");
+const Agenda = require("./models/agenda");
 const { application } = require("express");
 
 const userDB = process.env.MONGODB_USER;
@@ -38,7 +38,14 @@ mongoose
   });
 
 //usuarios
-app.use('/api/usuario', usuarioRoutes);
+app.use(usuarioRoutes);
+
+app.use("/api/usuarios", (req, res, next) => {
+  res.status(200).json({
+    mensagem: "Tudo OK",
+    usuarios: usuarios,
+  });
+});
 
 //medicos
 
