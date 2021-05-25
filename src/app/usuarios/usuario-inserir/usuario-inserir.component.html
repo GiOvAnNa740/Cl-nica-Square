@@ -20,7 +20,7 @@
           #nome="ngModel"
         />
       </div>
-      <div class="form-group col-md-1">
+      <div class="form-group col-md-3">
         <label for="inputSexo">Sexo</label>
         <select
           required
@@ -35,7 +35,7 @@
           <option value="Masculino">Masculino</option>
         </select>
       </div>
-      <div class="form-group col-md-2">
+      <div class="form-group col-md-3">
         <label for="inputData">Data de nascimento</label>
         <input
           required
@@ -46,15 +46,6 @@
           name="dtnasc"
           [ngModel]="usuario?.dtnasc"
           #dtNasc="ngModel"
-        />
-      </div>
-      <div class="form-group col-md-3">
-        <label for="inputFoto">(Faça o upload de uma foto sua)</label>
-        <input
-          type="file"
-          accept="image/*"
-          class="form-control"
-          id="inputFoto"
         />
       </div>
     </div>
@@ -200,14 +191,7 @@
         </select>
       </div>
     </div>
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck" />
-        <label class="form-check-label" for="gridCheck"
-          >É verdade esse bilete</label
-        >
-      </div>
-    </div>
+
   </div>
   <script language="javascript" type="text/javascript">
     function newPopup() {

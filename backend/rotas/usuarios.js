@@ -29,7 +29,11 @@ router.post("/login", (req, res, next) => {
         "minhasenha",
         { expiresIn: "1h" }
       );
-      res.status(200).json({ token: token });
+      res.status(200).json({
+        token: token,
+        expiresIn: 3600,
+        idUsuario: user._id
+      });
     })
     .catch((err) => {
       return res.status(401).json({

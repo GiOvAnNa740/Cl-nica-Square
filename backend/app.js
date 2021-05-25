@@ -40,12 +40,12 @@ mongoose
 //usuarios
 app.use(usuarioRoutes);
 
-app.use("/api/usuarios", (req, res, next) => {
+/*app.use("/api/usuarios", (req, res, next) => {
   res.status(200).json({
     mensagem: "Tudo OK",
     usuarios: usuarios,
   });
-});
+});*/
 
 //medicos
 

@@ -155,7 +155,7 @@ export class UsuarioService {
     };
     this.httpClient
       .post<{ token: string }>(
-        'http://localhost:3000/api/usuarios',
+        'http://localhost:3000/login',
         authData
       )
       .subscribe((resposta) => {
