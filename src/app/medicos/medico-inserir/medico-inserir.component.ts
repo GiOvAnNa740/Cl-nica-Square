@@ -71,40 +71,40 @@ export class MedicoInserirComponent implements OnInit{
     });
   }
 
-  onAdicionarMedico() {
-    if (this.form.invalid) {
+  onAdicionarMedico(form: NgForm) {
+    if (form.invalid) {
       return;
     }
     this.estaCarregando = true;
     if (this.modo === "criar"){
     this.medicoService.adicionarMedico(
-      this.form.value.id,
-      this.form.value.nome,
-      this.form.value.sexo,
-      this.form.value.dtnasc,
-      this.form.value.email,
-      this.form.value.fone,
-      this.form.value.cpf,
-      this.form.value.espec,
-      this.form.value.crm,
-      this.form.value.senha,
-      this.form.value.senhaconf
+      form.value.id,
+      form.value.nome,
+      form.value.sexo,
+      form.value.dtnasc,
+      form.value.email,
+      form.value.fone,
+      form.value.cpf,
+      form.value.espec,
+      form.value.crm,
+      form.value.senha,
+      form.value.senhaconf
     );
     }else{
       this.medicoService.atualizarMedico(
         this.idMedico,
-        this.form.value.nome,
-        this.form.value.sexo,
-        this.form.value.dtnasc,
-        this.form.value.email,
-        this.form.value.fone,
-        this.form.value.cpf,
-        this.form.value.espec,
-        this.form.value.crm,
-        this.form.value.senha,
-        this.form.value.senhaconf
+        form.value.nome,
+        form.value.sexo,
+        form.value.dtnasc,
+        form.value.email,
+        form.value.fone,
+        form.value.cpf,
+        form.value.espec,
+        form.value.crm,
+        form.value.senha,
+        form.value.senhaconf
       );
     }
-    this.form.reset();
+    form.reset();
   }
 }

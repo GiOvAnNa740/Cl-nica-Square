@@ -11,6 +11,7 @@ import { MedicoReceitaComponent } from './receita/medico-receita/medico-receita.
 import { AgendaMedicoComponent } from './agenda/agenda-medico/agenda-medico.component';
 import { AgendaInserirComponent } from './agenda/agenda-inserir/agenda-inserir.component';
 import { LoginComponent } from './usuarios/login/login.component';
+import { LoginMedicoComponent } from './medicos/login-medico/login-medico.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'agendaInserir', component:AgendaInserirComponent},
   {path: 'agendaEditar/:idCliente', component:AgendaInserirComponent},
   {path: 'login', component:LoginComponent},
+  {path: 'loginMedico', component:LoginMedicoComponent},
 ];
 
 @NgModule({

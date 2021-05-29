@@ -46,28 +46,37 @@
         </li>
         <li class="nav-item" *ngIf="autenticado">
           <span>
-            <a class="nav-link" routerLink="agenda">Agenda (usuário)</a>
+            <a class="nav-link" routerLink="agenda">Agenda</a>
           </span>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="medAutenticado">
           <span>
-            <a class="nav-link" routerLink="agendaInserir">Agenda (médico)</a>
+            <a class="nav-link" routerLink="agendaInserir">Agenda</a>
           </span>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="medAutenticado">
           <span>
             <a class="nav-link" routerLink="medicoReceita"
-              >Meus pacientes (médico)</a
+              >Meus pacientes</a
             >
           </span>
         </li>
-        <li class="nav-item" *ngIf="!autenticado">
+        <li class="nav-item" *ngIf="!autenticado && !medAutenticado">
           <span>
             <!--voltar para sign-->
             <a class="btn btn-info" id="btn2" routerLink="login">Login</a>
           </span>
         </li>
+        <li class="nav-item" *ngIf="!autenticado && !medAutenticado">
+          <span>
+            <!--voltar para sign-->
+            <a class="btn btn-info" id="btn2" routerLink="loginMedico">Sou médico</a>
+          </span>
+        </li>
         <li *ngIf="autenticado">
+          <button (click)="onLogout()" mat-button>Logout</button>
+        </li>
+        <li *ngIf="medAutenticado">
           <button (click)="onLogout()" mat-button>Logout</button>
         </li>
       </ul>

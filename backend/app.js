@@ -51,7 +51,7 @@ app.use(usuarioRoutes);
 
 app.use(medicoRoutes);
 
-app.use("/api/medicos", (req, res, next) => {
+/*app.use("/api/medicos", (req, res, next) => {
   res.status(200).json({
     mensagem: "Tudo OK",
     medicos: medicos,
@@ -65,7 +65,7 @@ app.use("/api/medicos", (req, res, next) => {
     "Access-Control-Allow-Methods",
     "GET, POST, PATCH, PUT, DELETE,OPTIONS"
   );
-});
+});*/
 
 //agenda
 

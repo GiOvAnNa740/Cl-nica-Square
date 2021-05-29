@@ -41,6 +41,7 @@ import { MedicoReceitaComponent } from './receita/medico-receita/medico-receita.
 import { LoginComponent } from './usuarios/login/login.component';
 
 import { AuthInterceptor } from './usuarios/auth-interceptor';
+import { LoginMedicoComponent } from './medicos/login-medico/login-medico.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -64,7 +65,8 @@ FullCalendarModule.registerPlugins([
     FooterComponent,
     AgendaInserirComponent,
     MedicoReceitaComponent,
-    LoginComponent
+    LoginComponent,
+    LoginMedicoComponent
   ],
   imports: [
     BrowserModule,

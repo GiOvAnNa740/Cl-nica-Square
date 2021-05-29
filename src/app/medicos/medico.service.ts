@@ -4,13 +4,26 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { Router } from '@angular/router';
+import { AuthData } from './auth-data.model';
 
 @Injectable({ providedIn: 'root' })
 export class MedicoService {
+  private medAutenticado: boolean = false;
+  private token: any;
+  private authStatusSubject = new Subject<boolean>();
   private medicos: Medico[] = [];
   private listaMedicosAtualizada = new Subject<Medico[]>();
 
-  constructor(private httpClient: HttpClient) {}
+  public getToken(): string {
+    return this.token;
+  }
+
+  public getStatusSubject() {
+    return this.authStatusSubject.asObservable();
+  }
+
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   atualizarMedico(
     id: string,
@@ -25,32 +38,44 @@ export class MedicoService {
     senha: string,
     senhaconf: string
   ) {
-    const medico: Medico = { id, nome, sexo,dtnasc, email, fone, cpf, espec, crm, senha, senhaconf };
+    const medico: Medico = {
+      id,
+      nome,
+      sexo,
+      dtnasc,
+      email,
+      fone,
+      cpf,
+      espec,
+      crm,
+      senha,
+      senhaconf,
+    };
     this.httpClient
       .put(`http://localhost:3000/api/medicos/${id}`, medico)
-      .subscribe((res => {
+      .subscribe((res) => {
         const copia = [...this.medicos];
-        const indice = copia.findIndex (me => me.id === medico.id);
+        const indice = copia.findIndex((me) => me.id === medico.id);
         copia[indice] = medico;
         this.medicos = copia;
         this.listaMedicosAtualizada.next([...this.medicos]);
-        }));
+      });
   }
 
   getMedico(idMedico: string) {
     //return { ...this.medicos.find((me) => me.id === idMedico) };
     return this.httpClient.get<{
       _id: string;
-      nome: string,
-      sexo: string,
-      dtnasc: string,
-      email: string,
-      fone: string,
-      cpf: string,
-      espec: string,
-      crm: string,
-      senha: string,
-      senhaconf: string
+      nome: string;
+      sexo: string;
+      dtnasc: string;
+      email: string;
+      fone: string;
+      cpf: string;
+      espec: string;
+      crm: string;
+      senha: string;
+      senhaconf: string;
     }>(`http://localhost:3000/api/medicos/${idMedico}`);
   }
 
@@ -124,5 +149,28 @@ export class MedicoService {
         this.medicos.push(medico);
         this.listaMedicosAtualizada.next([...this.medicos]);
       });
+  }
+
+  login(email: string, senha: string) {
+    const authData: AuthData = {
+      email: email,
+      senha: senha,
+    };
+    this.httpClient
+      .post<{ token: string }>('http://localhost:3000/loginMedico', authData)
+      .subscribe((resposta) => {
+        this.token = resposta.token;
+        if (this.token) {
+          this.medAutenticado = true;
+          this.authStatusSubject.next(true);
+          this.router.navigate(['/']);
+        }
+      });
+  }
+
+  logout() {
+    this.token = null;
+    this.authStatusSubject.next(false);
+    this.router.navigate(['/']);
   }
 }

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require ('mongoose-unique-validator');
 
 const medicoSchema = mongoose.Schema({
   nome: { type: String, required: true },
@@ -12,5 +13,7 @@ const medicoSchema = mongoose.Schema({
   senha: { type: String, required: true },
   senhaconf: { type: String, required: true },
 });
+
+medicoSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model("Medico", medicoSchema);

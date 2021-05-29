@@ -90,7 +90,7 @@ export class AgendaService {
     };
     this.httpClient
       .post<{ mensagem: string; id: string }>(
-        'http://localhost:3000/api/agendas',
+        'http://localhost:3000/agendaInserir',
         agenda
       )
       .subscribe((dados) => {
