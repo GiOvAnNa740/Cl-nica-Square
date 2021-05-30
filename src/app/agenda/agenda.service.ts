@@ -4,12 +4,14 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { Router } from '@angular/router';
+
 @Injectable({ providedIn: 'root' })
 export class AgendaService {
   private agendas: Agenda[] = [];
   private listaAgendasAtualizada = new Subject<Agenda[]>();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   atualizarAgenda(
     id: string,
@@ -17,11 +19,12 @@ export class AgendaService {
     hora: string,
     medico: string,
     paciente: string,
-    espec: string
+    espec: string,
+    link:string
   ) {
-    const agenda: Agenda = { id, date, hora, medico, paciente, espec };
+    const agenda: Agenda = { id, date, hora, medico, paciente, espec, link };
     this.httpClient
-      .put(`http://localhost:3000/api/agendas/${id}`, agenda)
+      .put(`http://localhost:3000/api/agenda/${id}`, agenda)
       .subscribe((res) => {
         const copia = [...this.agendas];
         const indice = copia.findIndex((ag) => ag.id === agenda.id);
@@ -40,13 +43,14 @@ export class AgendaService {
       medico: string;
       paciente: string;
       espec: string;
-    }>(`http://localhost:3000/api/agendas/${idAgenda}`);
+      link: string;
+    }>(`http://localhost:3000/api/agenda/${idAgenda}`);
   }
 
   getAgendas(): void {
     this.httpClient
       .get<{ mensagem: string; agendas: any }>(
-        'http://localhost:3000/api/agendas'
+        'http://localhost:3000/api/agenda'
       )
       .pipe(
         map((dados) => {
@@ -58,6 +62,7 @@ export class AgendaService {
               medico: agenda.medico,
               paciente: agenda.paciente,
               espec: agenda.espec,
+              link: agenda.link
             };
           });
         })
@@ -78,7 +83,8 @@ export class AgendaService {
     hora: string,
     medico: string,
     paciente: string,
-    espec: string
+    espec: string,
+    link: string
   ) {
     const agenda: Agenda = {
       id: id,
@@ -87,22 +93,24 @@ export class AgendaService {
       medico: medico,
       paciente: paciente,
       espec: espec,
+      link: link,
     };
     this.httpClient
       .post<{ mensagem: string; id: string }>(
-        'http://localhost:3000/agendaInserir',
+        'http://localhost:3000/api/agenda',
         agenda
       )
       .subscribe((dados) => {
         agenda.id = dados.id;
         this.agendas.push(agenda);
         this.listaAgendasAtualizada.next([...this.agendas]);
+        this.router.navigate(['/agendaInserir']);
       });
   }
 
   removerAgenda(id: string): void {
     this.httpClient
-      .delete(`http://localhost:3000/api/agendas/${id}`)
+      .delete(`http://localhost:3000/api/agenda/${id}`)
       .subscribe(() => {
         this.agendas = this.agendas.filter((ag) => {
           return ag.id !== id;

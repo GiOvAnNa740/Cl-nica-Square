@@ -3,14 +3,14 @@
   <mat-accordion *ngIf="agendas.length > 0">
     <mat-expansion-panel *ngFor="let agenda of agendas">
       <mat-expansion-panel-header
-        >{{ agenda.paciente }} - {{ agenda.espec }}</mat-expansion-panel-header
+        >{{ agenda.paciente }}</mat-expansion-panel-header
       >
       <p>Data: {{ agenda.date }}</p>
       <p>Hora: {{ agenda.hora }}</p>
+      <p>Link: {{ agenda.link }}</p>
       <mat-action-row>
         <a mat-button color="primary" [routerLink]="['/agendaInserir', agenda.id]">Editar consulta</a>
         <button mat-button color="warn" (click)="onDelete(agenda.id)">Cancelar consulta</button>
-        <button mat-button color="primary" routerLink="medicoReceita">Adicionar</button>
         </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>

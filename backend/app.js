@@ -40,43 +40,20 @@ mongoose
 //usuarios
 app.use(usuarioRoutes);
 
-/*app.use("/api/usuarios", (req, res, next) => {
-  res.status(200).json({
-    mensagem: "Tudo OK",
-    usuarios: usuarios,
-  });
-});*/
-
 //medicos
 
 app.use(medicoRoutes);
-
-/*app.use("/api/medicos", (req, res, next) => {
-  res.status(200).json({
-    mensagem: "Tudo OK",
-    medicos: medicos,
-  });
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type,Accept, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE,OPTIONS"
-  );
-});*/
 
 //agenda
 
 app.use(agendaRoutes);
 
-app.use("/api/agendas", (req, res, next) => {
+/*app.use("/api/agendas", (req, res, next) => {
   res.status(200).json({
     mensagem: "Tudo OK",
     agendas: agendas,
   });
-});
+});*/
 
 //receitas
 app.use(receitaRoutes);

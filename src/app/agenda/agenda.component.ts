@@ -25,17 +25,6 @@ export class AgendaComponent {
   ) {}
 
   ngOnInit() {
-    this.form = new FormGroup({
-      nome: new FormControl(null, {
-        validators: [Validators.required, Validators.minLength(3)],
-      }),
-      fone: new FormControl(null, {
-        validators: [Validators.required],
-      }),
-      email: new FormControl(null, {
-        validators: [Validators.required, Validators.email],
-      }),
-    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('idAgenda')) {
         this.modo = 'agendaEditar';
@@ -48,6 +37,7 @@ export class AgendaComponent {
             medico: dadosAg.medico,
             paciente: dadosAg.paciente,
             espec: dadosAg.espec,
+            link: dadosAg.link,
           };
           this.form.setValue({
             date: this.agenda.date,
@@ -55,6 +45,7 @@ export class AgendaComponent {
             medico: this.agenda.medico,
             paciente: this.agenda.paciente,
             espec: this.agenda.espec,
+            link: this.agenda.link
           });
         });
       } else {
@@ -74,7 +65,8 @@ export class AgendaComponent {
         form.value.hora,
         form.value.medico,
         form.value.paciente,
-        form.value.espec
+        form.value.espec,
+        form.value.link
       );
     } else {
       this.agendaService.atualizarAgenda(
@@ -83,7 +75,8 @@ export class AgendaComponent {
         form.value.hora,
         form.value.medico,
         form.value.paciente,
-        form.value.espec
+        form.value.espec,
+        form.value.link
       );
     }
     form.reset();

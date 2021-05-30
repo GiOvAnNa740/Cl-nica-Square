@@ -5,4 +5,5 @@ export interface Agenda{
   medico: string,
   paciente: string,
   espec: string,
+  link:string,
 }

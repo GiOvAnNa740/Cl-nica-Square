@@ -2,7 +2,37 @@
   type="text/javascript"
   src="https://code.jquery.com/jquery-3.2.1.min.js"
 ></script>
-<form (submit)="onAdicionarAgenda(agendaForm)" *ngIf="!estaCarregando" #agendaForm="ngForm">
+<form
+  (submit)="onAdicionarAgenda(agendaForm)"
+  *ngIf="!estaCarregando"
+  #agendaForm="ngForm"
+>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputMedico">E-mail </label>
+      <input
+        type="email"
+        class="form-control"
+        id="inputMedico"
+        placeholder="Confirme o email para realização da consulta"
+        name="medico"
+        [ngModel]="agenda?.medico"
+        #medico="ngModel"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputLink"><a href="http://meet.google.com/new" target="_blank">Link da consulta</a></label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputLink"
+        placeholder="Insira aqui o link da consulta"
+        name="link"
+        [ngModel]="agenda?.link"
+        #link="ngModel"
+      />
+    </div>
+  </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEspecialidade">Especialidade</label>
@@ -13,7 +43,11 @@
         [ngModel]="agenda?.espec"
         #espec="ngModel"
       >
+        <option value="Cardiologia">Cardiologia</option>
+        <option value="Clínico geral">Clínica geral</option>
+        <option value="Neurologia">Neurologia</option>
         <option value="Nutrição">Nutrição</option>
+        <option value="Pediatria">Pediatria</option>
         <option value="Psicologia">Psicologia</option>
         <option value="Psiquiatria">Psiquiatria</option>
       </select>
@@ -64,14 +98,6 @@
   </div>
   <div class="form-row">
     <button type="submit" class="btn btn-info" value="enviar">Agendar</button>
-    <!--<button
-      type="submit"
-      class="btn btn-outline-primary"
-      id="btn2"
-      value="enviar"
-    >
-      Consultar
-    </button>-->
   </div>
 
   <full-calendar [options]="calendarOptions"></full-calendar>

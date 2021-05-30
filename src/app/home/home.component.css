@@ -1,4 +1,18 @@
-.home img {
+.form-row img {
+  height: 250px;
+}
+
+.form-row .img1 {
+  height: 250px;
+}
+.form-row .img2 {
+  height: 250px;
+}
+.form-row .img3 {
+  height: 250px;
+}
+
+#banner {
   width: 100%;
   height: 600px;
   object-position: center;
@@ -37,5 +51,13 @@
   .home img {
     height: 700px;
   }
+  .homecontent {
+    font-size: 30px;
+  }
+}
 
+.form-row img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

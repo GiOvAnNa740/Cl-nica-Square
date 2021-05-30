@@ -26,17 +26,6 @@ export class AgendaInserirComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.form = new FormGroup({
-      nome: new FormControl(null, {
-        validators: [Validators.required, Validators.minLength(3)],
-      }),
-      fone: new FormControl(null, {
-        validators: [Validators.required],
-      }),
-      email: new FormControl(null, {
-        validators: [Validators.required, Validators.email],
-      }),
-    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('idAgenda')) {
         this.modo = 'agendaEditar';
@@ -49,6 +38,7 @@ export class AgendaInserirComponent implements OnInit {
             medico: dadosMe.medico,
             paciente: dadosMe.paciente,
             espec: dadosMe.espec,
+            link:dadosMe.link
           };
           this.form.setValue({
             date: this.agenda.date,
@@ -56,6 +46,7 @@ export class AgendaInserirComponent implements OnInit {
             medico: this.agenda.medico,
             paciente: this.agenda.paciente,
             espec: this.agenda.espec,
+            link: this.agenda.link
           });
         });
       } else {
@@ -77,7 +68,8 @@ export class AgendaInserirComponent implements OnInit {
         form.value.hora,
         form.value.medico,
         form.value.paciente,
-        form.value.espec
+        form.value.espec,
+        form.value.link
       );
     } else {
       this.agendaService.atualizarAgenda(
@@ -86,10 +78,11 @@ export class AgendaInserirComponent implements OnInit {
         form.value.hora,
         form.value.medico,
         form.value.paciente,
-        form.value.espec
+        form.value.espec,
+        form.value.link
       );
     }
-    form.reset();
+    form.resetForm();
   }
 
   calendarOptions: CalendarOptions = {
